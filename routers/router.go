@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"train/controllers"
+	"train_system/controllers"
 	"github.com/astaxie/beego"
 )
 

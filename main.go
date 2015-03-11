@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "train/routers"
+	_ "train_system/routers"
 	"github.com/astaxie/beego"
 )
 
