@@ -1,9 +1,9 @@
 {{template "head.tpl" .}}
 
-<div class="container-fluid">
+<div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-			 <button class="btn" type="button">按钮</button>
+		    <button class="btn btn-primary" type="button">Create New Imformation</button>
 			<table class="table">
 				<thead>
 					<tr>

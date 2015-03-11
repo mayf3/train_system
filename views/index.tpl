@@ -1,23 +1,25 @@
 {{template "head.tpl" .}}
 
-<div class="container-fluid">
+<p></p>
+<div class="container" role="main">
 	<div class="row-fluid">
 		<div class="span12">
-		    <button class="btn" type="button">创建表格</button>
-			<table class="table">
+		    <button class="btn btn-primary" type="button">Create Table</button>
+            <p></p>
+			<table class="table table-bordered">
 				<thead>
 					<tr>
 						<th>
-							编号
+							Date
 						</th>
 						<th>
-							产品
+							Title
 						</th>
 						<th>
-							交付时间
+                            Problem Source
 						</th>
 						<th>
-							状态
+                            Operation
 						</th>
 					</tr>
 				</thead>

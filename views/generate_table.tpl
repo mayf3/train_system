@@ -1,17 +1,17 @@
 {{template "head.tpl" .}}
 
-<div class="container-fluid">
+<div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-			<h3 class="text-center">
-				h3. 这是一套可视化布局系统.
-			</h3>
+			<h2 class="text-center">
+				Table Title
+			</h2>
 			<h3>
-				h3. 这是一套可视化布局系统.
+                Problem Source
 			</h3>
-			<h3 class="text-right">
-				h3. 这是一套可视化布局系统.
-			</h3>
+			<h4 class="text-right">
+                Table Date
+			</h4>
 			<ul>
 				<li>
 					新闻资讯
@@ -38,7 +38,7 @@
 					网络游戏
 				</li>
 			</ul>
-			<table class="table">
+			<table class="table table-bordered">
 				<thead>
 					<tr>
 						<th>
