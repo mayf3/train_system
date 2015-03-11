@@ -3,7 +3,7 @@
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span12">
-		    <button class="btn" type="button">创建表格</button>
+			 <button class="btn" type="button">按钮</button>
 			<table class="table">
 				<thead>
 					<tr>
