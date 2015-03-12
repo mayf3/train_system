@@ -7,10 +7,10 @@ import (
 
 type Tables struct{
 	Id				int			`orm:"pk;auto"`
-	Contest_name	string
-	Problem_number	int			`orm:"null"`
+	ContestName		string
+	ProblemNumber	int			`orm:"null"`
 	Source			string		`orm:"null"`
-	Create_time		time.Time	`orm:"auto_now_add;type(datetime)"`
+	CreateTime		time.Time	`orm:"auto_now_add;type(datetime)"`
 	Information		[]*Information	`orm:"reverse(many)"`
 }
 
@@ -25,4 +25,35 @@ func GetAllTable() (maps []orm.Params, err error){
 		return maps, err
 	}
 	return maps, err
+}
+
+func GetSingleTable() (orm.Params, error){
+	var maps []orm.Params
+	o := orm.NewOrm()
+	num, err := o.Raw("SELECT * FROM tables").Values(&maps)
+	if num > 0 && err == nil{
+		return maps[0], err
+	}
+	return nil, err
+}
+
+func InsertTable(single_table orm.Params) error{
+	o := orm.NewOrm()
+	res, err := o.Raw("INSERT INTO tables(ContestName, ProblemNumber, Source) VALUES (?, ?, ?)", single_table["contest_name"], single_table["problem_number"], single_table["source"]).Exec()
+	if res == nil {}
+	return err
+}
+
+func EditTable(single_table orm.Params) error{
+	o := orm.NewOrm()
+	res, err := o.Raw("UPDATE tables(ContestName, ProblemNumber, Source) VALUES (?, ?, ?) WHERE Id = ?", single_table["contest_name"], single_table["problem_number"], single_table["source"], single_table["id"]).Exec()
+	if res == nil {}
+	return err
+}
+
+func DeleteTable(table_id int) error{
+	o := orm.NewOrm()
+	res, err := o.Raw("DELETE FROM tables WHERE Id = ?", table_id).Exec()
+	if res == nil {}
+	return err
 }
