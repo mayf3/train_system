@@ -5,8 +5,8 @@ model construct:
 
 Tables:
 	Id				int			`orm:"pk;auto"`
-	Contest_name	string
-	Problem_number	int			`orm:"null"`
+	ContestName		string
+	ProblemNumber	int			`orm:"null"`
 	Source			string		`orm:"null"`
 	Create_time		time.Time	`orm:"auto_now_add;type(datetime)"`
 	Information		[]*Information	`orm:"reverse(many)"`
