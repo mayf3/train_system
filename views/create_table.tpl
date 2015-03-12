@@ -3,7 +3,7 @@
 <div class="container theme-showcase" role="main">
 	<div class="row">
 		<div class="span12">
-			<form id="table">
+			<form id="table" method="post" action="/create_table">
 				<fieldset>
 				    <legend>Create Table</legend> 
 

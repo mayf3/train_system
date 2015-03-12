@@ -10,7 +10,7 @@ import (
 
 const (
 	kDataBaseUser		=  "myf"
-	kDataBasePassword	=	""
+	kDataBasePassword	=	"myfadmin"
 	kDataBaseName		=	"test"
 )
 

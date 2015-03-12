@@ -2,14 +2,10 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-//	"train_system/models"
+	"train_system/models"
+	"fmt"
 )
 
-type table struct {
-	title		string	`form:"title"`
-	problem_number	string	`form:"number"`
-	source		string	`form:"source"`
-}
 
 type CreateTableController struct {
 	beego.Controller
@@ -20,12 +16,14 @@ func (c *CreateTableController) Get() {
 }
 
 func (c *CreateTableController) Post() {
-	new_table := table{}
-	if err := c.ParseForm(&new_table); err == nil {
-		maps := map[string]string{}
-		maps["Contest_name"] = new_table.title
-		maps["Problem_number"] = new_table.problem_number
-		maps["Source"] = new_table.source;
-//		models.CreateTable(maps);
-	}
+	title := c.GetString("title")
+	number := c.GetString("number")
+	source := c.GetString("source")
+	maps := map[string]string{}
+	maps["contest_name"] = title
+	maps["problem_number"] = number
+	maps["source"] = source
+	fmt.Println(maps);
+	models.InsertTable(maps)
+	c.Redirect("/index", 302)
 }

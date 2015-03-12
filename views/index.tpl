@@ -27,7 +27,7 @@
                     {{range $key, $val := .Map}}
 					<tr>
 						<td>
-                            {{$val.table_id}}
+                            {{$val.create_time}}
 						</td>
 						<td>
                             {{$val.contest_name}}

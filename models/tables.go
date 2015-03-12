@@ -27,19 +27,19 @@ func GetAllTable() (maps []orm.Params, err error){
 	return maps, err
 }
 
-func GetSingleTable() (orm.Params, error){
+func GetSingleTable(table_id int) (orm.Params, error){
 	var maps []orm.Params
 	o := orm.NewOrm()
-	num, err := o.Raw("SELECT * FROM tables").Values(&maps)
+	num, err := o.Raw("SELECT * FROM tables WHERE Id=?", table_id).Values(&maps)
 	if num > 0 && err == nil{
 		return maps[0], err
 	}
 	return nil, err
 }
 
-func InsertTable(single_table orm.Params) error{
+func InsertTable(single_table map[string]string) error{
 	o := orm.NewOrm()
-	res, err := o.Raw("INSERT INTO tables(ContestName, ProblemNumber, Source) VALUES (?, ?, ?)", single_table["contest_name"], single_table["problem_number"], single_table["source"]).Exec()
+	res, err := o.Raw("INSERT INTO tables(Contest_Name, Problem_Number, Source) VALUES (?, ?, ?)", single_table["contest_name"], single_table["problem_number"], single_table["source"]).Exec()
 	if res == nil {}
 	return err
 }
