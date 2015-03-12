@@ -7,14 +7,20 @@ import (
     _ "github.com/go-sql-driver/mysql"
 )
 
+
+const (
+	kDataBaseUser		=  "myf"
+	kDataBasePassword	=	""
+	kDataBaseName		=	"test"
+)
+
 func init(){
+	orm.Debug = true
 	orm.RegisterDriver("mysql", orm.DR_MySQL)
-	db_user		:= "myf"
-	db_password := ""
-	db_name		:= "test"
-	orm.RegisterDataBase("default", "mysql", db_user + ":" + db_password + "@/" + db_name + "?charset=utf8")
+	orm.RegisterDataBase("default", "mysql", kDataBaseUser + ":" + kDataBasePassword + "@/" + kDataBaseName + "?charset=utf8")
 }
 
 func main() {
+	orm.RunCommand()
 	beego.Run()
 }

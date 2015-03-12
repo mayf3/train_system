@@ -91,7 +91,7 @@
 							04/04/2012
 						</td>
 						<td>
-							{{ .test.problem_number }}
+								1
 						</td>
 					</tr>
 				</tbody>
