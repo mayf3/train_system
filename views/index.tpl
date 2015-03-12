@@ -38,6 +38,7 @@
 						<td>
                             <button type="button" class="btn btn-sm btn-success">Edit</button>
                             <button type="button" class="btn btn-sm btn-info">Show</button>
+							Default
 						</td>
 					</tr>
                     {{end}}

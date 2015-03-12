@@ -11,7 +11,7 @@ type GenerateTableController struct {
 func (c *GenerateTableController) Get() {
 	table_id := c.Input().Get("table_id");
 	c.Data["title"] = table_id
-	//maps, err := models.GetSingleTable(table_id);
+	maps, err := models.GetSingleTable(table_id);
 	//if err == nil {
 	//	c.Data["title"] = maps["title"];
 	//	c.Data["source"] = maps["source"];
