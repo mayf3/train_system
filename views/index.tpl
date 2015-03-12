@@ -4,7 +4,7 @@
 <div class="container" role="main">
 	<div class="row-fluid">
 		<div class="span12">
-		    <button class="btn btn-primary" type="button">Create Table</button>
+		    <button class="btn btn-primary" type="button" onclick="window.location='/create_table'">Create Table</button>
             <p></p>
 			<table class="table table-striped">
 				<thead>
