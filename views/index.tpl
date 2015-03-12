@@ -27,10 +27,10 @@
                     {{range $key, $val := .Map}}
 					<tr>
 						<td>
-                            {{$val.date}}
+                            {{$val.table_id}}
 						</td>
 						<td>
-                            {{$val.title}}
+                            {{$val.contest_name}}
 						</td>
 						<td>
                             {{$val.source}}

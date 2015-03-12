@@ -12,7 +12,7 @@ create table if not exists tables (
     primary key (table_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table if not exists infomation (
+create table if not exists information (
     info_id int(30) unsigned not null AUTO_INCREMENT,
     table_id int(30) unsigned not null,
     rank int(2) unsigned not null,

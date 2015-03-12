@@ -4,7 +4,7 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<h2 class="text-center">
-				Table Title
+				{{.title}}
 			</h2>
 			<h3>
                 Problem Source

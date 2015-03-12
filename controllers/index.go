@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"train_system/models"
+	"fmt"
 )
 
 type IndexController struct {
@@ -12,8 +13,9 @@ type IndexController struct {
 
 func (this *IndexController) Get() {
 	maps, err := models.GetAllTable()
+	fmt.Println("len = ", len(maps))
 	if err == nil{
-		this.Data["test"] = maps[0]
+		this.Data["Map"] = maps
 	}
 	this.TplNames = "index.tpl"
 }

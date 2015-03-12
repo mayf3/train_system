@@ -3,20 +3,20 @@
 <div class="container theme-showcase" role="main">
 	<div class="row">
 		<div class="span12">
-			<form>
+			<form id="table">
 				<fieldset>
 				    <legend>Create Table</legend> 
 
                     <label>Table Title</label>
-                    <input type="text" /> 
+                    <input name="title" type="text" /> 
                     <span class="help-block">the title in hust</span> 
 
                     <label>Problem Number</label>
-                    <input type="text" /> 
+                    <input name="number" type="text" /> 
                     <span class="help-block">the title in hust</span> 
 
                     <label>Problem Source</label>
-                    <input type="text" /> 
+                    <input name="source" type="text" /> 
                     <span class="help-block">the title in hust</span> 
 
                     <button type="submit" class="btn btn-success">Submit</button>
