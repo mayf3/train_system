@@ -3,7 +3,7 @@ create table if not exists member (
     primary key (name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table if not exists train_tables (
+create table if not exists tables (
     contest_name varchar(200) not null,
     problem_number int(30),
     source varchar(200),

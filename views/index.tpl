@@ -91,7 +91,7 @@
 							04/04/2012
 						</td>
 						<td>
-							Call in to confirm
+							{{ .test.problem_number }}
 						</td>
 					</tr>
 				</tbody>
