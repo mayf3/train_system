@@ -8,18 +8,18 @@
 				    <legend>Create Table</legend> 
 
                     			<label>Table Title</label>
-                    			<input name="title" type="text" value="{{.Post.contest_name}}"/> 
+                    			<input name="title" type="text" value="{{.Post.ContestName}}"/> 
                     			<span class="help-block">the title in hust</span> 
 
                     			<label>Problem Number</label>
-                    			<input name="number" type="text" value="{{.Post.problem_number}}"/> 
+                    			<input name="number" type="text" value="{{.Post.ProblemNumber}}"/> 
                     			<span class="help-block">the title in hust</span> 
 
                     			<label>Problem Source</label>
-                    			<input name="source" type="text" value="{{.Post.source}}"/> 
+                    			<input name="source" type="text" value="{{.Post.Source}}"/> 
                     			<span class="help-block">the title in hust</span> 
 
-		    			<input type="hidden" name="table_id" value="{{.Post.id}}">
+		    			<input type="hidden" name="table_id" value="{{.Post.Id}}">
                     			<button type="submit" class="btn btn-success">Submit</button>
 				</fieldset>
 			</form>

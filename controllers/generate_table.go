@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"train_system/models"
 	"strconv"
+	"train_system/models"
 )
 
 type GenerateTableController struct {
@@ -15,9 +15,9 @@ func (c *GenerateTableController) Get() {
 	id, err := strconv.Atoi(table_id)
 	maps, err := models.GetSingleTable(id)
 	if err == nil {
-		c.Data["title"] = maps["contest_name"]
-		c.Data["source"] = maps["source"]
-		c.Data["date"] = maps["create_time"]
+		c.Data["title"] = maps.ContestName
+		c.Data["source"] = maps.Source
+		//c.Data["date"] = maps.CreateTime
 	}
 	c.TplNames = "generate_table.tpl"
 }

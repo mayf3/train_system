@@ -26,19 +26,20 @@
 				<tbody>
                     {{range $key, $val := .Map}}
 					<tr>
-						<td>
-                            {{$val.create_time}}
+                        <td>
+                            {{$val.CreateTime}}
+						</td>
+						
+					    <td>
+                            {{$val.ContestName}}
 						</td>
 						<td>
-                            {{$val.contest_name}}
+                            {{$val.Source}}
 						</td>
 						<td>
-                            {{$val.source}}
-						</td>
-						<td>
-                           <button type="button" class="btn btn-sm btn-info" onclick="window.location='/generate_table?table_id={{$val.id}}'">Show</button>
-                            <button type="button" class="btn btn-sm btn-success" onclick="window.location='/create_table?table_id={{$val.id}}'">Edit_Table</button>
-                            <button type="button" class="btn btn-sm btn-warning" onclick="window.location='/edit_table?table_id={{$val.id}}'">Edit_Team</button>
+                           <button type="button" class="btn btn-sm btn-info" onclick="window.location='/generate_table?table_id={{$val.Id}}'">Show</button>
+                            <button type="button" class="btn btn-sm btn-success" onclick="window.location='/create_table?table_id={{$val.Id}}'">Edit_Table</button>
+                            <button type="button" class="btn btn-sm btn-warning" onclick="window.location='/edit_table?table_id={{$val.Id}}'">Edit_Team</button>
 						</td>
 					</tr>
                     {{end}}

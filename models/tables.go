@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+// TODO make a tool.go file for other function like change_string_to_int
+
 type Tables struct {
 	Id            int `orm:"pk;auto"`
 	ContestName   string
@@ -19,56 +21,50 @@ func init() {
 	orm.RegisterModel(new(Tables))
 }
 
-func GetAllTable() (all_table []orm.Params, err error) {
+func GetAllTable() ([]Tables, error) {
 	o := orm.NewOrm()
-	num, err := o.QueryTable("tables").All(&all_tableh)
-	if num > 0 && err == nil {
-		return all_table, err
-	}
+	var all_table []Tables
+	_, err := o.QueryTable("tables").All(&all_table)
 	return all_table, err
 }
 
-func GetSingleTable(table_id int) (single_table orm.Params, err error) {
+func GetSingleTable(table_id int) (Tables, error) {
 	o := orm.NewOrm()
+	var single_table Tables
 	err := o.QueryTable("tables").Filter("Id", table_id).One(&single_table)
-	if err == nil {
-		return single_table, err
-	}
-	return nil, err
+	return single_table, err
 }
 
-func InsertTable(single_table orm.Params) error {
+func InsertTable(single_table map[string]string) error {
+	var _ error
 	o := orm.NewOrm()
 	insert_table := new(Tables)
-	insert_table.ContestName = single_table["contest_name"].(string)
-	insert_table.ProblemNumber = single_table["problem_number"].(int)
-	insert_table.Source = single_table["source"].(string)
-	id, err := o.Insert(insert_table)
-	if id > 0 {
-	}
+	insert_table.ContestName = single_table["contest_name"]
+	insert_table.ProblemNumber, _ = strconv.Atoi(single_table["problem_number"])
+	insert_table.Source = single_table["source"]
+	_, err := o.Insert(insert_table)
 	return err
 }
 
-func EditTable(single_table orm.Params) error {
+func EditTable(single_table map[string]string) error {
+	var _ error
+	var num int
+	num, _ = strconv.Atoi(single_table["Id"])
 	o := orm.NewOrm()
-	edit_table := Tables{Id: single_table["Id"].(int)}
+	edit_table := Tables{Id: num}
 	err := o.Read(&edit_table)
 	if err == nil {
-		edit_table.ContestName = single_table["contest_name"].(string)
-		edit_table.ProblemNumber = single_table["problem_number"].(int)
-		edit_table.Source = single_table["source"].(string)
-		var num int64
-		num, err = o.Update(&edit_table)
-		if num > 0 {
-		}
+		edit_table.ContestName = single_table["contest_name"]
+		edit_table.ProblemNumber, _ = strconv.Atoi(single_table["problem_number"])
+		edit_table.Source = single_table["source"]
+		var _ int64
+		_, err = o.Update(&edit_table)
 	}
 	return err
 }
 
 func DeleteTable(table_id int) error {
 	o := orm.NewOrm()
-	num, err := o.Delete(&Tables{Id: table_id})
-	if num > 0 {
-	}
+	_, err := o.Delete(&Tables{Id: table_id})
 	return err
 }
