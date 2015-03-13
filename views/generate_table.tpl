@@ -4,13 +4,13 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<h2 class="text-center">
-				Table Title
+				{{.title}}
 			</h2>
 			<h3>
-                Problem Source
+				{{.source}}
 			</h3>
 			<h4 class="text-right">
-                Table Date
+				{{.date}}
 			</h4>
 			<ul>
 				<li>
