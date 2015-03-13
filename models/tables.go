@@ -5,55 +5,69 @@ import (
 	"time"
 )
 
-type Tables struct{
-	Id				int			`orm:"pk;auto"`
-	ContestName		string
-	ProblemNumber	int			`orm:"null"`
-	Source			string		`orm:"null"`
-	CreateTime		time.Time	`orm:"auto_now_add;type(datetime)"`
-	Information		[]*Information	`orm:"reverse(many)"`
+type Tables struct {
+	Id            int `orm:"pk;auto"`
+	ContestName   string
+	ProblemNumber int            `orm:"null"`
+	Source        string         `orm:"null"`
+	CreateTime    time.Time      `orm:"auto_now_add;type(datetime)"`
+	Information   []*Information `orm:"reverse(many)"`
 }
 
-func init(){
+func init() {
 	orm.RegisterModel(new(Tables))
 }
 
-func GetAllTable() (maps []orm.Params, err error){
+func GetAllTable() (all_table []orm.Params, err error) {
 	o := orm.NewOrm()
-	num, err := o.Raw("SELECT * FROM tables").Values(&maps)
+	num, err := o.QueryTable("tables").All(&all_tableh)
 	if num > 0 && err == nil {
-		return maps, err
+		return all_table, err
 	}
-	return maps, err
+	return all_table, err
 }
 
-func GetSingleTable() (orm.Params, error){
-	var maps []orm.Params
+func GetSingleTable(table_id int) (single_table orm.Params, err error) {
 	o := orm.NewOrm()
-	num, err := o.Raw("SELECT * FROM tables").Values(&maps)
-	if num > 0 && err == nil{
-		return maps[0], err
+	err := o.QueryTable("tables").Filter("Id", table_id).One(&single_table)
+	if err == nil {
+		return single_table, err
 	}
 	return nil, err
 }
 
-func InsertTable(single_table orm.Params) error{
+func InsertTable(single_table orm.Params) error {
 	o := orm.NewOrm()
-	res, err := o.Raw("INSERT INTO tables(ContestName, ProblemNumber, Source) VALUES (?, ?, ?)", single_table["contest_name"], single_table["problem_number"], single_table["source"]).Exec()
-	if res == nil {}
+	insert_table := new(Tables)
+	insert_table.ContestName = single_table["contest_name"].(string)
+	insert_table.ProblemNumber = single_table["problem_number"].(int)
+	insert_table.Source = single_table["source"].(string)
+	id, err := o.Insert(insert_table)
+	if id > 0 {
+	}
 	return err
 }
 
-func EditTable(single_table orm.Params) error{
+func EditTable(single_table orm.Params) error {
 	o := orm.NewOrm()
-	res, err := o.Raw("UPDATE tables(ContestName, ProblemNumber, Source) VALUES (?, ?, ?) WHERE Id = ?", single_table["contest_name"], single_table["problem_number"], single_table["source"], single_table["id"]).Exec()
-	if res == nil {}
+	edit_table := Tables{Id: single_table["Id"].(int)}
+	err := o.Read(&edit_table)
+	if err == nil {
+		edit_table.ContestName = single_table["contest_name"].(string)
+		edit_table.ProblemNumber = single_table["problem_number"].(int)
+		edit_table.Source = single_table["source"].(string)
+		var num int64
+		num, err = o.Update(&edit_table)
+		if num > 0 {
+		}
+	}
 	return err
 }
 
-func DeleteTable(table_id int) error{
+func DeleteTable(table_id int) error {
 	o := orm.NewOrm()
-	res, err := o.Raw("DELETE FROM tables WHERE Id = ?", table_id).Exec()
-	if res == nil {}
+	num, err := o.Delete(&Tables{Id: table_id})
+	if num > 0 {
+	}
 	return err
 }
