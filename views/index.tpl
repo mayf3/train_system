@@ -36,9 +36,9 @@
                             {{$val.source}}
 						</td>
 						<td>
-                            <button type="button" class="btn btn-sm btn-success">Edit</button>
-                            <button type="button" class="btn btn-sm btn-info">Show</button>
-							Default
+                            <button type="button" class="btn btn-sm btn-info" onclick="window.location='/generate_table?table_id={{$val.id}}'">Show</button>
+                            <button type="button" class="btn btn-sm btn-success" onclick="window.location='/create_table?table_id={{$val.id}}'">Edit_Table</button>
+                            <button type="button" class="btn btn-sm btn-warning" onclick="window.location='/edit_table?table_id={{$val.id}}'">Edit_Team</button>
 						</td>
 					</tr>
                     {{end}}

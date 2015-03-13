@@ -3,6 +3,7 @@ package models
 import (
 	"github.com/astaxie/beego/orm"
 	"time"
+	"strconv"
 )
 
 type Tables struct{
@@ -44,9 +45,10 @@ func InsertTable(single_table map[string]string) error{
 	return err
 }
 
-func EditTable(single_table orm.Params) error{
+func EditTable(single_table map[string]string) error{
 	o := orm.NewOrm()
-	res, err := o.Raw("UPDATE tables(ContestName, ProblemNumber, Source) VALUES (?, ?, ?) WHERE Id = ?", single_table["contest_name"], single_table["problem_number"], single_table["source"], single_table["id"]).Exec()
+	id, _ := strconv.Atoi(single_table["id"])
+	res, err := o.Raw("UPDATE tables SET Contest_Name=?, Problem_Number=?, Source=? WHERE Id = ?", single_table["contest_name"], single_table["problem_number"], single_table["source"], id).Exec()
 	if res == nil {}
 	return err
 }
