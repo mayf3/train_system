@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/astaxie/beego"
 	"strconv"
 	"train_system/models"
@@ -15,6 +16,7 @@ func (c *GenerateTableController) Get() {
 	id, err := strconv.Atoi(table_id)
 	maps, err := models.GetSingleTable(id)
 	if err == nil {
+		fmt.Println("aa")
 		c.Data["title"] = maps.ContestName
 		c.Data["source"] = maps.Source
 		//c.Data["date"] = maps.CreateTime

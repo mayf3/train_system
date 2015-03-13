@@ -15,7 +15,7 @@ Information:
 	Id				int			`orm:"pk;auto"`
 	Table			*Tables		`orm:"rel(fk)"`
 	Rank			int			`orm:"null"`
-	info			string		`orm:"null"`
+	Info			string		`orm:"null"`
 
 Member:
 	Id		int		`orm:"pk;auto"`

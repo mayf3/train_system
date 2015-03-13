@@ -49,7 +49,7 @@ func InsertTable(single_table map[string]string) error {
 func EditTable(single_table map[string]string) error {
 	var _ error
 	var num int
-	num, _ = strconv.Atoi(single_table["Id"])
+	num, _ = strconv.Atoi(single_table["id"])
 	o := orm.NewOrm()
 	edit_table := Tables{Id: num}
 	err := o.Read(&edit_table)

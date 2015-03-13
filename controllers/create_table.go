@@ -32,7 +32,6 @@ func (c *CreateTableController) Post() {
 	maps["problem_number"] = number
 	maps["source"] = source
 	if err == nil && id != 0 {
-		fmt.Println(id, "\n", table_id)
 		maps["id"] = table_id
 		models.EditTable(maps)
 	} else {
