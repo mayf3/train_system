@@ -5,10 +5,9 @@ import (
 )
 
 type Member struct{
-	Id			int			`orm:"pk:auto"`
-	Number		int
-	Person		Person		`orm:"rel(fk)"`
-	Information Information	`orm:"rel(fk)"`
+	Order		int
+	Person		*Person		`orm:"pk:rel(fk)"`
+	Information 	*Information	`orm:"pk:rel(fk)"`
 }
 
 func init(){

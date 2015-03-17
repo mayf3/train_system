@@ -5,9 +5,10 @@ import (
 )
 
 type Person struct{
-	Id		int		`orm:"pk;auto"`
+	Id	int		`orm:"pk;auto"`
 	Name	string
 	Grade	int
+	Member	[]*Member	`orm:"reverse(many)"`
 }
 
 func init(){
