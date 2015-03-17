@@ -5,9 +5,10 @@ import (
 )
 
 type Member struct{
-	Id		int		`orm:"pk;auto"`
-	Name	string
-	Grade	int
+	Id			int			`orm:"pk:auto"`
+	Number		int
+	Person		Person		`orm:"rel(fk)"`
+	Information Information	`orm:"rel(fk)"`
 }
 
 func init(){

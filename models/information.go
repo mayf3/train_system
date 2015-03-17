@@ -5,10 +5,11 @@ import (
 )
 
 type Information struct {
-	Id    int     `orm:"pk;auto"`
-	Table *Tables `orm:"rel(fk)"`
-	Rank  int     `orm:"null"`
-	Info  string  `orm:"null"`
+	Id    	int     	`orm:"pk;auto"`
+	Rank  	int     	`orm:"null"`
+	Table 	*Tables 	`orm:"rel(fk)"`
+	Member	[]*Member	`orm:"reverse(many)"`
+	Problem []*Problem	`orm:"reverse(many)"`
 }
 
 func init() {
