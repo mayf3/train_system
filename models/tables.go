@@ -11,8 +11,8 @@ import (
 type Tables struct {
 	Id            int `orm:"pk;auto"`
 	ContestName   string
-	ProblemNumber int            `orm:"null"`
-	Source        string         `orm:"null"`
+	ProblemNumber int
+	Source        string
 	CreateTime    time.Time      `orm:"auto_now_add;type(datetime)"`
 	Information   []*Information `orm:"reverse(many)"`
 }

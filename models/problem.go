@@ -5,10 +5,11 @@ import (
 )
 
 type Problem struct {
-	Number		int		`orm:"pk"`
+	Id			int				`orm:"pk;auto"`
+	Number		int
 	Participant	int
 	Status		int
-	Information 	*Information	`orm:"pk;rel(fk)"`
+	Information	*Information	`orm:"rel(fk)"`
 }
 
 func init() {
