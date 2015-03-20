@@ -7,6 +7,7 @@ import (
 type Information struct {
 	Id		int			`orm:"pk;auto"`
 	Rank	int
+	Name	string
 	Table	*Tables		`orm:"rel(fk)"`
 	Member	[]*Member	`orm:"reverse(many)"`
 	Problem []*Problem	`orm:"reverse(many)"`

@@ -11,8 +11,8 @@ type IndexController struct {
 }
 
 func (this *IndexController) Get() {
-	var tmp_table Tables
-	maps, err := tmp_table.GetAllTable()
+	var table Tables
+	maps, err := table.GetAllTable()
 	if err == nil {
 		this.Data["Map"] = maps
 	}

@@ -8,11 +8,11 @@
 				    <legend>Create Table</legend> 
 
                     			<label>Table Title</label>
-                    			<input name="title" type="text" value="{{.Post.ContestName}}"/> 
+                    			<input name="contest_name" type="text" value="{{.Post.ContestName}}"/> 
                     			<span class="help-block">the title in hust</span> 
 
                     			<label>Problem Number</label>
-                    			<input name="number" type="text" value="{{.Post.ProblemNumber}}"/> 
+                    			<input name="problem_number" type="text" value="{{.Post.ProblemNumber}}"/> 
                     			<span class="help-block">the title in hust</span> 
 
                     			<label>Problem Source</label>
