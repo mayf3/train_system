@@ -8,12 +8,12 @@ import (
 // TODO make a tool.go file for other function like change_string_to_int
 
 type Tables struct {
-	Id            int `orm:"pk;auto"`
-	ContestName   string
-	ProblemNumber int
-	Source        string
-	CreateTime    time.Time      `orm:"auto_now_add;type(datetime)"`
-	Information   []*Information `orm:"reverse(many)"`
+	Id				int `orm:"pk;auto"`
+	ContestName		string
+	ProblemNumber	int
+	Source			string
+	CreateTime		time.Time      `orm:"auto_now_add;type(datetime)"`
+	Information		[]*Information `orm:"reverse(many)"`
 }
 
 func init() {

@@ -1,44 +1,37 @@
 package controllers
 
 import (
-//	"fmt"
 	"github.com/astaxie/beego"
-//	"strconv"
-//	"train_system/models"
+	"strconv"
+	. "train_system/models"
 )
 
 type CreateTableController struct {
 	beego.Controller
 }
 
-/*
 func (c *CreateTableController) Get() {
+	var tmp_table Tables
 	table_id := c.Input().Get("table_id")
 	id, err := strconv.Atoi(table_id)
 	if err == nil && id != 0 {
-		maps, _ := models.GetSingleTable(id)
-		c.Data["Post"] = maps
+		err = tmp_table.GetTableById(id)
+		c.Data["Post"] = tmp_table
 	}
 	c.TplNames = "create_table.tpl"
 }
 
 func (c *CreateTableController) Post() {
-	table_id := c.GetString("table_id")
-	id, err := strconv.Atoi(table_id)
-	title := c.GetString("title")
-	number := c.GetString("number")
-	source := c.GetString("source")
-	maps := map[string]string{}
-	maps["contest_name"] = title
-	maps["problem_number"] = number
-	maps["source"] = source
-	if err == nil && id != 0 {
-		maps["id"] = table_id
-		models.EditTable(maps)
+	var table Tables
+	var err	error
+	table.Id, err = strconv.Atoi(c.GetString("table_id"))
+	table.ContestName = c.GetString("contest_name")
+	table.ProblemNumber, err = strconv.Atoi(c.GetString("problem_number"))
+	table.Source = c.GetString("source")
+	if err == nil && table.Id != 0 {
+		table.Update()
 	} else {
-		models.InsertTable(maps)
+		table.Insert()
 	}
-	fmt.Println(maps)
 	c.Redirect("/index", 302)
 }
-*/
