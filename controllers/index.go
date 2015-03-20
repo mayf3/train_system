@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"fmt"
+//	"fmt"
 	"github.com/astaxie/beego"
-	"train_system/models"
+	. "train_system/models"
 )
 
 type IndexController struct {
@@ -11,8 +11,8 @@ type IndexController struct {
 }
 
 func (this *IndexController) Get() {
-	maps, err := models.GetAllTable()
-	fmt.Println("len = ", len(maps))
+	var tmp_table Tables
+	maps, err := tmp_table.GetAllTable()
 	if err == nil {
 		this.Data["Map"] = maps
 	}

@@ -1,16 +1,17 @@
 package controllers
 
 import (
-	"fmt"
+//	"fmt"
 	"github.com/astaxie/beego"
-	"strconv"
-	"train_system/models"
+//	"strconv"
+//	"train_system/models"
 )
 
 type CreateTableController struct {
 	beego.Controller
 }
 
+/*
 func (c *CreateTableController) Get() {
 	table_id := c.Input().Get("table_id")
 	id, err := strconv.Atoi(table_id)
@@ -40,3 +41,4 @@ func (c *CreateTableController) Post() {
 	fmt.Println(maps)
 	c.Redirect("/index", 302)
 }
+*/

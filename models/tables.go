@@ -2,7 +2,6 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
-	"strconv"
 	"time"
 )
 
@@ -21,50 +20,35 @@ func init() {
 	orm.RegisterModel(new(Tables))
 }
 
-func GetAllTable() ([]Tables, error) {
+// All
+func (this *Tables) GetAllTable() ([]Tables, error) {
 	o := orm.NewOrm()
-	var all_table []Tables
-	_, err := o.QueryTable("tables").All(&all_table)
-	return all_table, err
+	var all []Tables
+	_, err := o.QueryTable("tables").All(&all)
+	return all, err
 }
 
-func GetSingleTable(table_id int) (Tables, error) {
+// Single
+func (this *Tables) GetTableById(id int) error {
 	o := orm.NewOrm()
-	var single_table Tables
-	err := o.QueryTable("tables").Filter("Id", table_id).One(&single_table)
-	return single_table, err
-}
-
-func InsertTable(single_table map[string]string) error {
-	var _ error
-	o := orm.NewOrm()
-	insert_table := new(Tables)
-	insert_table.ContestName = single_table["contest_name"]
-	insert_table.ProblemNumber, _ = strconv.Atoi(single_table["problem_number"])
-	insert_table.Source = single_table["source"]
-	_, err := o.Insert(insert_table)
+	err := o.QueryTable("tables").Filter("Id", id).One(this)
 	return err
 }
 
-func EditTable(single_table map[string]string) error {
-	var _ error
-	var num int
-	num, _ = strconv.Atoi(single_table["id"])
+func (this *Tables) Insert() error{
 	o := orm.NewOrm()
-	edit_table := Tables{Id: num}
-	err := o.Read(&edit_table)
-	if err == nil {
-		edit_table.ContestName = single_table["contest_name"]
-		edit_table.ProblemNumber, _ = strconv.Atoi(single_table["problem_number"])
-		edit_table.Source = single_table["source"]
-		var _ int64
-		_, err = o.Update(&edit_table)
-	}
+	_, err := o.Insert(this)
 	return err
 }
 
-func DeleteTable(table_id int) error {
+func (this *Tables) Update() error{
 	o := orm.NewOrm()
-	_, err := o.Delete(&Tables{Id: table_id})
+	_, err := o.Update(this)
+	return err
+}
+
+func (this *Tables) Delete() error{
+	o := orm.NewOrm()
+	_, err := o.Delete(this)
 	return err
 }
