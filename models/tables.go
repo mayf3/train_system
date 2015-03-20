@@ -12,7 +12,7 @@ type Tables struct {
 	ContestName		string
 	ProblemNumber	int
 	Source			string
-	CreateTime		time.Time      `orm:"auto_now_add;type(datetime)"`
+	CreateTime		time.Time      `orm:"type(datetime)"`
 	Information		[]*Information `orm:"reverse(many)"`
 }
 
@@ -24,7 +24,7 @@ func init() {
 func (this *Tables) GetAllTable() ([]Tables, error) {
 	o := orm.NewOrm()
 	var all []Tables
-	_, err := o.QueryTable("tables").All(&all)
+	_, err := o.QueryTable("tables").OrderBy("-CreateTime").All(&all)
 	return all, err
 }
 
@@ -37,6 +37,7 @@ func (this *Tables) GetTableById(id int) error {
 
 func (this *Tables) Insert() error{
 	o := orm.NewOrm()
+	this.CreateTime = time.Now()
 	_, err := o.Insert(this)
 	return err
 }

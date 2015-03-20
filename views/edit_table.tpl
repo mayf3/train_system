@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-			<button class="btn btn-primary" type="button" onclick="window.location='/create_information'">Create New Team</button>
+			<button class="btn btn-primary" type="button" onclick="window.location='/create_information?table_id={{.table_id}}'">Create New Team</button>
 			<table class="table">
 				<thead>
 					<tr>

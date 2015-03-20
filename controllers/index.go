@@ -1,7 +1,7 @@
 package controllers
 
 import (
-//	"fmt"
+	"fmt"
 	"github.com/astaxie/beego"
 	. "train_system/models"
 )
@@ -15,6 +15,7 @@ func (this *IndexController) Get() {
 	maps, err := table.GetAllTable()
 	if err == nil {
 		this.Data["Map"] = maps
+		fmt.Println(maps)
 	}
 	this.TplNames = "index.tpl"
 }

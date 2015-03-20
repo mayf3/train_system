@@ -14,6 +14,7 @@ type EditTableController struct {
 func (c *EditTableController) Get() {
 	var table Tables
 	table_id := c.Input().Get("table_id")
+	c.Data["table_id"] = table_id
 	id, err := strconv.Atoi(table_id)
 	err = table.GetTableById(id)
 	if err == nil{
