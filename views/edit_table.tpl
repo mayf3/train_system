@@ -3,39 +3,21 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-		    <button class="btn btn-primary" type="button">Create New Imformation</button>
+			<button class="btn btn-primary" type="button" onclick="window.location='/create_information'">Create New Team</button>
 			<table class="table">
 				<thead>
 					<tr>
 						<th>
-							编号
+							Team
 						</th>
+						{{ range $key, $val := .problem_list}}
 						<th>
-							产品
+							{{ $val}}
 						</th>
-						<th>
-							交付时间
-						</th>
-						<th>
-							状态
-						</th>
+						{{end}}
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-					</tr>
 					<tr class="success">
 						<td>
 							1
@@ -62,34 +44,6 @@
 						</td>
 						<td>
 							Declined
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr class="info">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
 						</td>
 					</tr>
 				</tbody>
