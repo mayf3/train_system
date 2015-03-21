@@ -11,10 +11,19 @@ type IndexController struct {
 }
 
 func (this *IndexController) Get() {
-	var tmp_table Tables
-	maps, err := tmp_table.GetAllTable()
+	var(
+		err error
+		tmp string
+		table Tables
+		all_table []Tables
+	)
+	tmp = this.Input().Get("admin")
+	if err == nil && tmp == "true"{
+		this.Data["show"] = 1
+	}
+	all_table, err = table.GetAllTable()
 	if err == nil {
-		this.Data["Map"] = maps
+		this.Data["Init"] = all_table
 	}
 	this.TplNames = "index.tpl"
 }

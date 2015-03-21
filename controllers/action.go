@@ -1,16 +1,15 @@
 package controllers
 
 import (
+	"strconv"
 	"github.com/astaxie/beego"
-//	"strconv"
-//	"train_system/models"
+	. "train_system/models"
 )
 
 type ActionController struct {
 	beego.Controller
 }
 
-/*
 func (this *ActionController) Get() {
 	action := this.GetString("action")
 	if action == "DeleteTable" {
@@ -22,6 +21,9 @@ func (this *ActionController) Get() {
 }
 
 func DeleteTable(id int) {
-	models.DeleteTable(id)
+	var table Tables
+	err := table.GetTableById(id)
+	if err == nil{
+		table.Delete()
+	}
 }
-*/

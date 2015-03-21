@@ -3,21 +3,41 @@ init sql:
 
 model construct:
 
-Tables:
-	Id				int			`orm:"pk;auto"`
+type Tables struct {
+	Id				int `orm:"pk;auto"`
 	ContestName		string
-	ProblemNumber	int			`orm:"null"`
-	Source			string		`orm:"null"`
-	Create_time		time.Time	`orm:"auto_now_add;type(datetime)"`
-	Information		[]*Information	`orm:"reverse(many)"`
+	ProblemNumber	int
+	Source			string
+	CreateTime		time.Time      `orm:"auto_now_add;type(datetime)"`
+	Information		[]*Information `orm:"reverse(many)"`
+}
 
-Information:
-	Id				int			`orm:"pk;auto"`
-	Table			*Tables		`orm:"rel(fk)"`
-	Rank			int			`orm:"null"`
-	Info			string		`orm:"null"`
+type Information struct {
+	Id		int			`orm:"pk;auto"`
+	Rank	int
+	Table	*Tables		`orm:"rel(fk)"`
+	Member	[]*Member	`orm:"reverse(many)"`
+	Problem []*Problem	`orm:"reverse(many)"`
+}
 
-Member:
+type Member struct{
+	Id			int				`orm:"pk;auto"`
+	Order		int
+	Person		*Person			`orm:"rel(fk)"`
+	Information	*Information	`orm:"rel(fk)"`
+}
+
+type Problem struct {
+	Id			int				`orm:"pk;auto"`
+	Number		int
+	Participant	int
+	Status		int
+	Information	*Information	`orm:"rel(fk)"`
+}
+
+type Person struct{
 	Id		int		`orm:"pk;auto"`
 	Name	string
 	Grade	int
+	Member	[]*Member	`orm:"reverse(many)"`
+}

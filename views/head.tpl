@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="/static/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/static/css/theme.css">
+		<script type="text/javascript" src="/static/jquery/jquery-2.1.3.min.js"></script>
     </head>
 
     <body role="document">

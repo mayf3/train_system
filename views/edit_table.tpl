@@ -3,95 +3,40 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-		    <button class="btn btn-primary" type="button">Create New Imformation</button>
-			<table class="table">
+			<button class="btn btn-primary" type="button" onclick="window.location='/create_information?table_id={{.table_id}}'">Create New Team</button>
+			<p></p>
+			<table class="table table-striped table-hover table-bordered">
 				<thead>
 					<tr>
 						<th>
-							编号
+							Team
 						</th>
+						{{ range $key, $val := .problem_list}}
 						<th>
-							产品
+							{{ $val}}
 						</th>
+						{{end}}
 						<th>
-							交付时间
-						</th>
-						<th>
-							状态
+							operater
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
-					</tr>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Approved
-						</td>
-					</tr>
-					<tr class="error">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr class="info">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
+					{{range $key, $val := .total_status}}
+						<tr>
+							<td>
+								{{$val.Name}}
+							</td>
+							{{range $in_key, $in_val := $val.Status}}
+								<td>
+									{{$in_val}}
+								</td>
+							{{end}}
+							<td>
+								<button type="button" class="btn btn-sm btn-warning" onclick="window.location='/edit_information?table_id={{$.table_id}}&information_id={{$val.Id}}'">Edit</button>
+							</td>
+						</tr>
+					{{end}}
 				</tbody>
 			</table>
 		</div>

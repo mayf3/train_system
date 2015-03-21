@@ -7,6 +7,7 @@ import (
 type Information struct {
 	Id		int			`orm:"pk;auto"`
 	Rank	int
+	Name	string
 	Table	*Tables		`orm:"rel(fk)"`
 	Member	[]*Member	`orm:"reverse(many)"`
 	Problem []*Problem	`orm:"reverse(many)"`
@@ -20,11 +21,17 @@ func init() {
 func (this *Information) GetInformationByTable(relation_table Tables) ([]Information, error) {
 	o := orm.NewOrm()
 	var all []Information
-	_, err := o.QueryTable("information").Filter("Table", relation_table).All(&all)
+	_, err := o.QueryTable("information").Filter("Table", relation_table).OrderBy("Rank").All(&all)
 	return all, err
 }
 
 // Single
+func (this *Information) GetInformationById(id int) error {
+	o := orm.NewOrm()
+	_, err := o.QueryTable("information").Filter("Id", id).All(this)
+	return err
+}
+
 func (this *Information) Insert() error{
 	o := orm.NewOrm()
 	_, err := o.Insert(this)

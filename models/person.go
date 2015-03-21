@@ -30,7 +30,7 @@ func (this *Person) GetPersonById(id int) error {
 	return err
 }
 
-func (this *Person) GetPersonByName (name string) error {
+func (this *Person) GetPersonByName(name string) error {
 	o := orm.NewOrm()
 	err := o.QueryTable("person").Filter("Name", name).One(this)
 	return err
