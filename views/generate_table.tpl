@@ -52,6 +52,21 @@
 					{{end}}
 				</tbody>
 			</table>
+			<table class="table table-striped table-hover table-bordered">
+				{{range $key, $val := .hust_table }}
+					<tr>
+						{{range $in_key, $in_val := $val}}
+							<td>
+								{{$in_val}}
+							</td>
+						{{end}}
+					</tr>
+				{{end}} 
+			</table>
+			<form id="table" method="post" action="#">
+				<input name="hust_table" type="input">
+				<button type="submit" class="btn btn-success">Submit</button>
+			</form>
 		</div>
 	</div>
 </div>

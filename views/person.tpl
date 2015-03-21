@@ -34,9 +34,11 @@ $(document).ready(function(){
 						<th>
 							Grade
 						</th>
-						<th>
-                            Operation
-						</th>
+						{{if $.show}}
+							<th>
+                        	    Operation
+							</th>
+						{{end}}
 					</tr>
 				</thead>
 				<tbody>
@@ -51,12 +53,12 @@ $(document).ready(function(){
 						<td>
                             {{$val.Grade}}
 						</td>
-						<td>
-							{{if $.show}}
+						{{if $.show}}
+							<td>
                         		<button type="button" class="btn btn-sm btn-info" onclick="window.location='/person/edit?person_id={{$val.Id}}'">Edit</button>
                             	<button type="button" class="btn btn-sm btn-warning" onclick="window.location='/person/delete?person_id={{$val.Id}}'">Delete</button>
-							{{end}}
-						</td>
+							</td>
+						{{end}}
 					</tr>
                     {{end}}
 				</tbody>
