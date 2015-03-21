@@ -58,7 +58,7 @@ $(document).ready(function(){
 								<option value="{{$in_val.Id}}" {{if compare $in_val.Id $val}} selected="selected" {{end}}>{{$in_val.Name}}</option>
 							{{end}}
 						</select>
-                    	<span class="help-block">team member 3</span> 
+                    	<span class="help-block">team member</span> 
 					{{end}}
 
 					{{ range $key, $val := .problem_list}}
