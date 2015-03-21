@@ -15,37 +15,27 @@
 							{{ $val}}
 						</th>
 						{{end}}
+						<th>
+							operater
+						</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Approved
-						</td>
-					</tr>
-					<tr class="error">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
+					{{range $key, $val := .total_status}}
+						<tr class="success">
+							<td>
+								{{$val.Name}}
+							</td>
+							{{range $in_key, $in_val := $val.Status}}
+								<td>
+									{{$in_val}}
+								</td>
+							{{end}}
+							<td>
+								<button type="button" class="btn btn-sm btn-warning" onclick="window.location='/edit_information?table_id={{$.table_id}}&information_id={{$val.Id}}'">Edit</button>
+							</td>
+						</tr>
+					{{end}}
 				</tbody>
 			</table>
 		</div>
