@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
+	//"fmt"
 	"strconv"
+	"github.com/astaxie/beego"
 	. "train_system/models"
 )
 
@@ -16,7 +17,7 @@ func (c *CreateTableController) Get() {
 	id, err := strconv.Atoi(table_id)
 	if err == nil && id != 0 {
 		err = tmp_table.GetTableById(id)
-		c.Data["Post"] = tmp_table
+		c.Data["Init"] = tmp_table
 	}
 	c.TplNames = "create_table.tpl"
 }
@@ -25,6 +26,7 @@ func (c *CreateTableController) Post() {
 	var table Tables
 	var err	error
 	table.Id, err = strconv.Atoi(c.GetString("table_id"))
+	err = table.GetTableById(table.Id)
 	table.ContestName = c.GetString("contest_name")
 	table.ProblemNumber, err = strconv.Atoi(c.GetString("problem_number"))
 	table.Source = c.GetString("source")

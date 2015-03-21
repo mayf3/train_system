@@ -17,14 +17,20 @@ func init() {
 }
 
 // All
-func (this *Problem) GetProblemByInformation(relation_information Information) ([]Problem, error) {
+func (this *Problem) GetProblemByInformation(information Information) ([]Problem, error) {
 	o := orm.NewOrm()
 	var all []Problem
-	_, err := o.QueryTable("problem").Filter("Information", relation_information).All(&all)
+	_, err := o.QueryTable("problem").Filter("Information", information).OrderBy("Number").All(&all)
 	return all, err
 }
 
 // Single
+func (this *Problem) GetProblemByInformationAndNumber(information Information, number int) error{
+	o := orm.NewOrm()
+	err := o.QueryTable("problem").Filter("Information", information).Filter("Number", number).One(this)
+	return err
+}
+
 func (this *Problem) Insert() error{
 	o := orm.NewOrm()
 	_, err := o.Insert(this)
