@@ -2,7 +2,12 @@
         <div class="container-fluid" align="center">
             <div class="row-fluid">
                 <div class="span12">
-                    <address> <strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890</address>
+                    <address> 
+						<strong>Here must be have something</strong><br /> 
+						Hi, how are you? <br /> 
+						Fine, thank you.<br /> 
+						<abbr title="Phone">Email:</abbr>daretobeyourself.m.y.f@gmail.com
+					</address>
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@ func (this *IndexController) Get() {
 		all_table []Tables
 	)
 	tmp = this.Input().Get("admin")
-	if err == nil && tmp == "true"{
+	if tmp == "true"{
 		this.Data["show"] = 1
 	}
 	all_table, err = table.GetAllTable()

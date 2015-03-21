@@ -53,3 +53,10 @@ func (this *Person) Delete() error{
 	_, err := o.Delete(this)
 	return err
 }
+
+// Ask
+func (this *Person) IsExistByNameAndGrade(name string, grade int) bool{
+	o := orm.NewOrm()
+	err := o.QueryTable("person").Filter("Name", name).Filter("Grade", grade).One(this)
+	return err == nil
+}

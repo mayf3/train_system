@@ -24,7 +24,14 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/index">Home</a></li>
+                        <li id="nav_index" class="active">
+							<a href="/index">Home</a>
+						</li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li id="nav_person">
+							<a href="/person">Person</a>
+						</li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

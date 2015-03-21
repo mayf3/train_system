@@ -62,13 +62,13 @@ func GenerateTable(table_id int) []TotalStatus{
 			}
 			tmp = "";
 			if (all_problem[i].Participant & 1) == 1{
-				tmp = fmt.Sprintf("%s%s", tmp, all_person[0].Name[0:3])
+				tmp = fmt.Sprintf("%s%s ", tmp, all_person[0].Name)
 			}
 			if (all_problem[i].Participant & 2) == 2{
-				tmp = fmt.Sprintf("%s%s", tmp, all_person[1].Name[0:3])
+				tmp = fmt.Sprintf("%s%s ", tmp, all_person[1].Name)
 			}
 			if (all_problem[i].Participant & 4) == 4{
-				tmp = fmt.Sprintf("%s%s", tmp, all_person[2].Name[0:3])
+				tmp = fmt.Sprintf("%s%s ", tmp, all_person[2].Name)
 			}
 			if all_problem[i].Status == 2{
 				tmp = fmt.Sprintf("%sAC", tmp)
