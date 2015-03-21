@@ -43,27 +43,27 @@ $(document).ready(function(){
 
                     <label>Member1</label>
 					<select id="member1" name="member1" class="selectpicker" data-style="btn-primary" value="{{.Member1}}">
-						<option value="0" selected="selected"></option>
+						<option value="0" {{if .Member1}} {{else}} selected="selected" {{end}}></option>
 						{{range $key, $val := .all_person}}
-							<option value="{{$val.Id}}">{{$val.Name}}</option>
+							<option value="{{$val.Id}}" {{ if compare $key $.Member1 }} selected="selected" {{end}}>{{$val.Name}}</option>
 						{{end}}
 					</select>
                     <span class="help-block">team member 1</span> 
 
                     <label>Member2</label>
 					<select id="member2" name="member2" class="selectpicker" data-style="btn-primary" value="{{.Member2}}">
-						<option value="0" selected="selected"></option>
+						<option value="0" {{if .Member2}} {{else}} selected="selected" {{end}}></option>
 						{{range $key, $val := .all_person}}
-							<option value="{{$val.Id}}">{{$val.Name}}</option>
+							<option value="{{$val.Id}}" {{ if compare $key $.Member2 }} selected="selected" {{end}}>{{$val.Name}}</option>
 						{{end}}
 					</select>
                     <span class="help-block">team member 2</span> 
 
                     <label>Member3</label>
 					<select id="member3" name="member3" class="selectpicker" data-style="btn-primary" value="{{.Member3}}">
-						<option value="0" selected="selected"></option>
+						<option value="0" {{if .Member3}} {{else}} selected="selected" {{end}}></option>
 						{{range $key, $val := .all_person}}
-							<option value="{{$val.Id}}">{{$val.Name}}</option>
+							<option value="{{$val.Id}}" {{ if compare $key $.Member3 }} selected="selected" {{end}}>{{$val.Name}}</option>
 						{{end}}
 					</select>
                     <span class="help-block">team member 3</span> 
@@ -72,24 +72,24 @@ $(document).ready(function(){
 						<label> Problem {{$val.Name}} :  </label>
 						<div class="form-group">
 						    <label class="checkbox-inline">
-								<input type="checkbox" name="problem_participant{{$key}}[]"><label id="checkbox_label" name="checkbox1" >我是１号</label>
+								<input type="checkbox" value="1" name="problem_participant{{$key}}[]" {{if compare $val.Member1 1}} checked="true" {{end}}><label id="checkbox_label" name="checkbox1" >我是１号</label>
 							</label>
 						    <label class="checkbox-inline">
-								<input type="checkbox" name="problem_participant{{$key}}[]"><label id="checkbox_label" name="checkbox2" >我是２号</label>
+								<input type="checkbox" value="2" name="problem_participant{{$key}}[]" {{if compare $val.Member2 1}} checked="true" {{end}}><label id="checkbox_label" name="checkbox2" >我是２号</label>
 							</label>
 						    <label class="checkbox-inline">
-								<input type="checkbox" name="problem_participant{{$key}}[]"><label id="checkbox_label" name="checkbox3" >我是３号</label>
+								<input type="checkbox" value="4" name="problem_participant{{$key}}[]" {{if compare $val.Member3 1}} checked="true" {{end}}><label id="checkbox_label" name="checkbox3" >我是３号</label>
 							</label>
 						</div>
 						<div class="form-group">
 							<label class="radio-inline">
-								<input type="radio"  value="0" name="problem_status{{$key}}"><label id="radio_label">未ＡＣ</label>
+								<input type="radio"  value="0" name="problem_status{{$key}}" {{if compare $val.Status 0}} checked="true" {{end}}><label id="radio_label">未ＡＣ</label>
 							</label>
 							<label class="radio-inline">
-								<input type="radio"  value="1" name="problem_status{{$key}}"><label id="radio_label">ＡＣ</label>
+								<input type="radio"  value="1" name="problem_status{{$key}}" {{if compare $val.Status 1}} checked="true" {{end}}><label id="radio_label">ＡＣ</label>
 							</label>
 							<label class="radio-inline">
-								<input type="radio"  value="2" name="problem_status{{$key}}"><label id="radio_label">赛后ＡＣ</label>
+								<input type="radio"  value="2" name="problem_status{{$key}}" {{if compare $val.Status 2}} checked="true" {{end}}><label id="radio_label">赛后ＡＣ</label>
 							</label>
 						</div>
 					{{end}}

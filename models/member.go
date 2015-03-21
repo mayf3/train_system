@@ -26,8 +26,7 @@ func (this *Member) GetMemberByInformation(information Information) ([]Member, e
 // Single
 func (this *Member) GetMemberByInformationAndOrder(information Information, order int) error{
 	o := orm.NewOrm()
-	&this = Member{Information : information, Order : order}
-	err = o.Read(this)
+	err := o.QueryTable("member").Filter("Information", information).Filter("Order", order).One(this)
 	return err
 }
 

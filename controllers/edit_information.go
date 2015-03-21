@@ -83,7 +83,6 @@ func (c *EditInformationController) Get() {
 func (c *EditInformationController) Post() {
 	var(
 		err error
-		num int
 		table_id int
 		information_id int
 		person_id int
@@ -91,6 +90,7 @@ func (c *EditInformationController) Post() {
 		table Tables
 		member Member
 		person Person
+		problem Problem
 	)
 	information_id, err = strconv.Atoi(c.GetString("information"))
 	if err == nil && information_id > 0{
@@ -106,32 +106,50 @@ func (c *EditInformationController) Post() {
 	} else{
 		err = information.Insert()
 	}
-	for i = 1; i <= 3; i++{
-		person_id, err = strconv.Atoi(c.GetString(fmt.Printf("%s%d", "member", i)))
-		if err == nil && person > 0{
+	for i := 1; i <= 3; i++ {
+		person_id, err = strconv.Atoi(c.GetString(fmt.Sprintf("%s%d", "member", i)))
+		if err == nil && person_id > 0{
 			err = person.GetPersonById(person_id)
 			err = member.GetMemberByInformationAndOrder(information, i)
 			if err == nil{
-				member.Person = person
+				member.Person = &person
 				member.Update()
 			} else{
 				member = Member{}
 				member.Order = i
-				member.Person = person
-				member.Information = information
+				member.Person = &person
+				member.Information = &information
 				member.Insert()
 			}
 		}
 	}
-	for i = 0; i < table.ProblemNumber; i++{
-		num, err = strconv.Atoi(c.GetString(fmt.Sprintf("%s%d", "problem_participant" , i)))
-		if err == nil{
-			if information_id > 0{
-				problem = problem.Get
-			}
-			else{
-			}
+	for i := 0; i < table.ProblemNumber; i++{
+		var(
+			sum int
+			num int
+			status int
+			strings []string
+		)
+		sum = 0
+		strings = c.GetStrings(fmt.Sprintf("problem_participant%d[]", i))
+		for _, val := range strings{
+			num, err = strconv.Atoi(val)
+			sum = sum + num
+		}
+		status, err = strconv.Atoi(c.GetString(fmt.Sprintf("problem_status%d", i)))
+		if information_id > 0{
+			err = problem.GetProblemByInformationAndNumber(information, i)
+			problem.Participant = sum
+			problem.Status = status
+			problem.Update()
+		} else{
+			problem = Problem{}
+			problem.Number = i;
+			problem.Participant = sum
+			problem.Status = status
+			problem.Information = &information
+			problem.Insert()
 		}
 	}
-	c.Redirect("/index", 302)
+	c.Redirect(fmt.Sprintf("/edit_table?table_id=%d", table.Id), 302)
 }
