@@ -26,6 +26,7 @@ func (c *EditInformationController) Get() {
 		err error
 		table Tables
 		information Information
+		show_members []int
 		member Member
 		all_member []Member
 		problem Problem
@@ -55,8 +56,8 @@ func (c *EditInformationController) Get() {
 		err = information.GetInformationById(id)
 		c.Data["Init"] = information
 		all_member, err = member.GetMemberByInformation(information)
-		for key, val := range all_member{
-			c.Data["Member" + string(rune(key + 49))] = val.Person.Id
+		for _, val := range all_member{
+			show_members = append(show_members, val.Person.Id)
 		}
 		all_problem, err = problem.GetProblemByInformation(information)
 		for _, val := range all_problem{
@@ -73,8 +74,9 @@ func (c *EditInformationController) Get() {
 		}
 	}
 	for i := len(all_member); i < 3; i++{
-		c.Data["Member" + string(rune(i + 49))] = 0
+		show_members = append(show_members, 0)
 	}
+	c.Data["show_members"] = show_members;
 	fmt.Println(c.Data)
 	c.Data["problem_list"] = problem_list
 	c.TplNames = "edit_information.tpl"
@@ -92,7 +94,7 @@ func (c *EditInformationController) Post() {
 		person Person
 		problem Problem
 	)
-	information_id, err = strconv.Atoi(c.GetString("information"))
+	information_id, err = strconv.Atoi(c.GetString("information_id"))
 	if err == nil && information_id > 0{
 		err = information.GetInformationById(information_id)
 	}
@@ -106,7 +108,7 @@ func (c *EditInformationController) Post() {
 	} else{
 		err = information.Insert()
 	}
-	for i := 1; i <= 3; i++ {
+	for i := 0; i < 3; i++ {
 		person_id, err = strconv.Atoi(c.GetString(fmt.Sprintf("%s%d", "member", i)))
 		if err == nil && person_id > 0{
 			err = person.GetPersonById(person_id)

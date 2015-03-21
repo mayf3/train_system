@@ -20,7 +20,7 @@ func init() {
 func (this *Problem) GetProblemByInformation(information Information) ([]Problem, error) {
 	o := orm.NewOrm()
 	var all []Problem
-	_, err := o.QueryTable("problem").Filter("Information", information).All(&all)
+	_, err := o.QueryTable("problem").Filter("Information", information).OrderBy("Number").All(&all)
 	return all, err
 }
 
