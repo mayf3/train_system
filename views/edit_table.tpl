@@ -4,7 +4,8 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<button class="btn btn-primary" type="button" onclick="window.location='/create_information?table_id={{.table_id}}'">Create New Team</button>
-			<table class="table">
+			<p></p>
+			<table class="table table-striped table-hover table-bordered">
 				<thead>
 					<tr>
 						<th>
@@ -22,7 +23,7 @@
 				</thead>
 				<tbody>
 					{{range $key, $val := .total_status}}
-						<tr class="success">
+						<tr>
 							<td>
 								{{$val.Name}}
 							</td>
