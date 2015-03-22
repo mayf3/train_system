@@ -41,3 +41,17 @@ type Person struct{
 	Grade	int
 	Member	[]*Member	`orm:"reverse(many)"`
 }
+
+MySQL 中文输入问题：
+	my.cnf中设置
+		[client]
+		default-character-set = utf8
+		[mysql]
+		default-character-set = utf8
+		[mysqld]
+		default-character-set = utf8
+	MySQL 5.5之后[mysqld]段设置要变更：
+		[mysqld]
+		default-storage-engine = INNODB
+		character-set-server = utf8
+		collation-server = utf8_general_ci
