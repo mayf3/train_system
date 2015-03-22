@@ -12,7 +12,7 @@
                     	<span class="help-block">SYSU-1, SYSU-2, SYU-3.....</span> 
 
                     	<label>Problem Number</label>
-						<select id="problem_number" class="selectpicker" value="0">
+						<select name="problem_number" class="selectpicker" value="0">
 							<option value="0" selected="selected"></option>
 							<option value="1"> A-1</option>
 							<option value="2"> B-2</option>
