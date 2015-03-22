@@ -55,7 +55,7 @@ $(document).ready(function(){
 						<select id="member{{$key}}" name="member{{$key}}" class="selectpicker" value="{{$val}}">
 							<option value="0" {{if compare $val 0}} selected="selected" {{end}}></option>
 							{{range $in_key, $in_val := $.all_person}}
-								<option value="{{$in_val.Id}}" {{if compare $in_val.Id $val}} selected="selected" {{end}}>{{$in_val.Name}}</option>
+								<option value="{{$in_val.Id}}" {{if compare $in_val.Id $val}} selected="selected" {{end}}>{{$in_val.Grade}}-{{$in_val.Name}}</option>
 							{{end}}
 						</select>
                     	<span class="help-block">team member</span> 

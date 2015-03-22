@@ -12,20 +12,20 @@
                     	<span class="help-block">SYSU-1, SYSU-2, SYU-3.....</span> 
 
                     	<label>Problem Number</label>
-						<select id="problem_number" class="selectpicker" value="0">
+						<select name="problem_number" class="selectpicker">
 							<option value="0" selected="selected"></option>
-							<option value="1"> A-1</option>
-							<option value="2"> B-2</option>
-							<option value="3"> C-3</option>
-							<option value="4"> D-4</option>
-							<option value="5"> E-5</option>
-							<option value="6"> F-6</option>
-							<option value="7"> G-7</option>
-							<option value="8"> H-8</option>
-							<option value="9"> I-9</option>
-							<option value="10">J-10</option>
-							<option value="11">K-11</option>
-							<option value="12">L-12</option>
+							<option value="1" {{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 1}} selected="selected" {{end}}  {{end}}> A-1</option>
+							<option value="2" {{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 2}} selected="selected" {{end}}  {{end}}> B-2</option>
+							<option value="3" {{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 3}} selected="selected" {{end}}  {{end}}> C-3</option>
+							<option value="4" {{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 4}} selected="selected" {{end}}  {{end}}> D-4</option>
+							<option value="5" {{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 5}} selected="selected" {{end}}  {{end}}> E-5</option>
+							<option value="6" {{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 6}} selected="selected" {{end}}  {{end}}> F-6</option>
+							<option value="7" {{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 7}} selected="selected" {{end}}  {{end}}> G-7</option>
+							<option value="8" {{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 8}} selected="selected" {{end}}  {{end}}> H-8</option>
+							<option value="9" {{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 9}} selected="selected" {{end}}  {{end}}> I-9</option>
+							<option value="10"{{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 10}} selected="selected" {{end}} {{end}}>J-10</option>
+							<option value="11"{{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 11}} selected="selected" {{end}} {{end}}>K-11</option>
+							<option value="12"{{if .Init.ProblemNumber }} {{if eq .Init.ProblemNumber 12}} selected="selected" {{end}} {{end}}>L-12</option>
 						</select>
                     	<span class="help-block">total problem number</span> 
 
