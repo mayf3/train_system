@@ -24,11 +24,11 @@ func (this *PersonController) Get() {
 		this.del()
 		this.Redirect("/person", 302)
 	default:
-		this.show();
+		this.show()
 	}
 }
 
-func (this *PersonController) Post(){
+func (this *PersonController) Post() {
 	operation := this.GetString(":action")
 	switch operation {
 	case "add":
@@ -39,41 +39,41 @@ func (this *PersonController) Post(){
 	}
 }
 
-func (this *PersonController) show(){
-	var(
-		_ error
-		tmp string
-		person Person
+func (this *PersonController) show() {
+	var (
+		_          error
+		tmp        string
+		person     Person
 		all_person []Person
 	)
 	tmp = this.Input().Get("admin")
-	if tmp == "true"{
+	if tmp == "true" {
 		this.Data["show"] = 1
 	}
-	all_person, _ = person.GetAllPerson()
+	all_person, _ = person.GetAllPersonOrderById()
 	this.Data["all_person"] = all_person
 	this.TplNames = "person.tpl"
 }
 
-func (this *PersonController) add(){
-	var(
-		err error
-		grade int
-		name string
+func (this *PersonController) add() {
+	var (
+		err    error
+		grade  int
+		name   string
 		person Person
 	)
 	name = this.GetString("name")
 	grade, err = this.GetInt("grade")
-	if err == nil && person.IsExistByNameAndGrade(name, grade) == false{
-		person.Name = name;
-		person.Grade = grade;
+	if err == nil && person.IsExistByNameAndGrade(name, grade) == false {
+		person.Name = name
+		person.Grade = grade
 		person.Insert()
 	}
 }
 
-func (this *PersonController) del(){
-	var(
-		_ error
+func (this *PersonController) del() {
+	var (
+		_      error
 		person Person
 	)
 	person.Id, _ = this.GetInt("person_id")
@@ -81,5 +81,5 @@ func (this *PersonController) del(){
 	person.Delete()
 }
 
-func (this *PersonController) edit(){
+func (this *PersonController) edit() {
 }

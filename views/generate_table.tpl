@@ -23,7 +23,9 @@
 				{{range $key, $val := .total_status}}
 					<h4>
 						<li>
-							{{$val.Name}} :
+							<strong>
+								{{$val.Name}} :
+							</strong>
 							{{range $in_key, $in_val := .MemberName }}
 								{{$in_val}}
 							{{end}}
