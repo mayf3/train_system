@@ -1,3 +1,4 @@
+SET NAMES 'utf8';
 Insert into person(name, grade) values
 	("何煌", 2011),
 	("李贝瑀", 2011),
