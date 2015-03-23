@@ -4,14 +4,14 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Person struct{
-	Id		int		`orm:"pk;auto"`
-	Name	string
-	Grade	int
-	Member	[]*Member	`orm:"reverse(many)"`
+type Person struct {
+	Id     int `orm:"pk;auto"`
+	Name   string
+	Grade  int
+	Member []*Member `orm:"reverse(many)"`
 }
 
-func init(){
+func init() {
 	orm.RegisterModel(new(Person))
 }
 
@@ -20,6 +20,20 @@ func (this *Person) GetAllPerson() ([]Person, error) {
 	o := orm.NewOrm()
 	var all []Person
 	_, err := o.QueryTable("person").All(&all)
+	return all, err
+}
+
+func (this *Person) GetAllPersonOrderById() ([]Person, error) {
+	o := orm.NewOrm()
+	var all []Person
+	_, err := o.QueryTable("person").OrderBy("Id").All(&all)
+	return all, err
+}
+
+func (this *Person) GetAllPersonOrderByGrade() ([]Person, error) {
+	o := orm.NewOrm()
+	var all []Person
+	_, err := o.QueryTable("person").OrderBy("Grade").All(&all)
 	return all, err
 }
 
@@ -36,26 +50,26 @@ func (this *Person) GetPersonByName(name string) error {
 	return err
 }
 
-func (this *Person) Insert() error{
+func (this *Person) Insert() error {
 	o := orm.NewOrm()
 	_, err := o.Insert(this)
 	return err
 }
 
-func (this *Person) Update() error{
+func (this *Person) Update() error {
 	o := orm.NewOrm()
 	_, err := o.Update(this)
 	return err
 }
 
-func (this *Person) Delete() error{
+func (this *Person) Delete() error {
 	o := orm.NewOrm()
 	_, err := o.Delete(this)
 	return err
 }
 
 // Ask
-func (this *Person) IsExistByNameAndGrade(name string, grade int) bool{
+func (this *Person) IsExistByNameAndGrade(name string, grade int) bool {
 	o := orm.NewOrm()
 	err := o.QueryTable("person").Filter("Name", name).Filter("Grade", grade).One(this)
 	return err == nil

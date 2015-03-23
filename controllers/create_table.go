@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	//"fmt"
-	"strconv"
+	"fmt"
 	"github.com/astaxie/beego"
+	"strconv"
 	. "train_system/models"
 )
 
@@ -12,9 +12,9 @@ type CreateTableController struct {
 }
 
 func (c *CreateTableController) Get() {
-	var(
-		err error
-		tmp string
+	var (
+		err   error
+		tmp   string
 		table Tables
 	)
 	tmp = c.Input().Get("table_id")
@@ -27,16 +27,18 @@ func (c *CreateTableController) Get() {
 }
 
 func (c *CreateTableController) Post() {
-	var(
+	var (
+		err   error
 		table Tables
-		err	error
 	)
 	table.Id, err = strconv.Atoi(c.GetString("table_id"))
 	err = table.GetTableById(table.Id)
 	table.ContestName = c.GetString("contest_name")
 	table.ProblemNumber, err = strconv.Atoi(c.GetString("problem_number"))
+	fmt.Println(table.ProblemNumber)
+	fmt.Println(err)
 	table.Source = c.GetString("source")
-	if err == nil && table.Id != 0 {
+	if table.Id != 0 {
 		table.Update()
 	} else {
 		table.Insert()
