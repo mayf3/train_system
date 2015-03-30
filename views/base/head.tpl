@@ -20,12 +20,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/index">SYSU Train System</a>
+                    <a class="navbar-brand" href="/">SYSU Train System</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li id="nav_index" class="active">
-							<a href="/index">Home</a>
+							<a href="/">Home</a>
 						</li>
                     </ul>
                     <ul class="nav navbar-nav">
