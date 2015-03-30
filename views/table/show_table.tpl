@@ -1,9 +1,39 @@
-{{template "head.tpl" .}}
+{{template "base/head.tpl" .}}
 
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-			<button class="btn btn-primary" type="button" onclick="window.location='/create_information?table_id={{.table_id}}'">Create New Team</button>
+			<h1 class="text-center">
+				{{.title}}
+			</h1>
+			
+        	<hr></hr>
+
+			<h4>
+				{{.source}}
+			</h4>
+
+			<h4 class="text-right">
+				{{.date}}
+			</h4>
+
+        	<hr></hr>
+
+			<ul>
+				{{range $key, $val := .total_status}}
+					<h4>
+						<li>
+							<strong>
+								{{$val.Name}} :
+							</strong>
+							{{range $in_key, $in_val := .MemberName }}
+								{{$in_val}}
+							{{end}}
+						</li>
+					</h4>
+				{{end}}
+			</ul>
+        	<hr></hr>
 			<ul class="list-inline">
 				<li class="text-muted">
 					<h3>
@@ -21,6 +51,7 @@
 					</h3>
 				</li>
 			</ul>
+			
 			<table class="table table-striped table-hover table-bordered">
 				<thead>
 					<tr>
@@ -32,9 +63,6 @@
 							{{ $val}}
 						</th>
 						{{end}}
-						<th class="text-center">
-							operation
-						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,15 +78,30 @@
 									{{$in_val.Context}}
 								</td>
 							{{end}}
-							<td class="text-center">
-								<button type="button" class="btn btn-sm btn-warning" onclick="window.location='/edit_information?table_id={{$.table_id}}&information_id={{$val.Id}}'">Edit</button>
-							</td>
 						</tr>
 					{{end}}
 				</tbody>
 			</table>
+
+        	<hr></hr>
+
+			<table class="table table-striped table-hover table-bordered">
+				{{range $key, $val := .hust_table }}
+					<tr>
+						{{range $in_key, $in_val := $val}}
+							<td>
+								{{$in_val}}
+							</td>
+						{{end}}
+					</tr>
+				{{end}} 
+			</table>
+			<form id="table" method="post" action="#">
+				<input name="hust_table" type="input">
+				<button type="submit" class="btn btn-success">Submit</button>
+			</form>
 		</div>
 	</div>
 </div>
 
-{{template "tail.tpl" .}}
+{{template "base/tail.tpl" .}}

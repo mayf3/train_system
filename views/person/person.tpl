@@ -1,4 +1,4 @@
-{{template "head.tpl" .}}
+{{template "base/head.tpl" .}}
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -67,4 +67,4 @@ $(document).ready(function(){
 	</div>
 </div>
 
-{{template "tail.tpl" .}}
+{{template "base/tail.tpl" .}}

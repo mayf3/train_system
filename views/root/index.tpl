@@ -1,4 +1,4 @@
-{{template "head.tpl" .}}
+{{template "base/head.tpl" .}}
 
 <p></p>
 <div class="container" role="main">
@@ -52,4 +52,4 @@
 	</div>
 </div>
 
-{{template "tail.tpl" .}}
+{{template "base/tail.tpl" .}}
