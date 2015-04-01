@@ -17,8 +17,17 @@ func init() {
 
 	table := beego.NewNamespace("/table",
 		beego.NSInclude(&TableController{}),
-		beego.NSNamespace("/:table_id:int",
+		beego.NSNamespace("/:table_id:int/information",
 			beego.NSInclude(&InformationController{})))
-
 	beego.AddNamespace(table)
+
+	admin := beego.NewNamespace("/admin",
+			beego.NSInclude(&RootController{}),
+			beego.NSNamespace("/person",
+				beego.NSInclude(&PersonController{})),
+			beego.NSNamespace("/table",
+				beego.NSInclude(&TableController{}),
+				beego.NSNamespace("/:table_id:int/information",
+					beego.NSInclude(&InformationController{}))))
+	beego.AddNamespace(admin)
 }

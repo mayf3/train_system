@@ -2,10 +2,13 @@ package main
 
 import (
 	"time"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
+
 	_ "train_system/routers"
+	_ "train_system/initialize"
 )
 
 const (
