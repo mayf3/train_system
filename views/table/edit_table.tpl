@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-			<button class="btn btn-primary" type="button" onclick="window.location='/create_information?table_id={{.table_id}}'">Create New Team</button>
+			<button class="btn btn-primary" type="button" onclick="window.location='{{.url_current_table}}/information/create'">Create New Team</button>
 			<ul class="list-inline">
 				<li class="text-muted">
 					<h3>
@@ -32,7 +32,7 @@
 						<th class="text-center">
 							Team
 						</th>
-						{{ range $key, $val := .problem_list}}
+						{{ range $key, $val := .other_problem_list}}
 						<th class="text-center">
 							{{ $val}}
 						</th>
@@ -43,7 +43,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					{{range $key, $val := .total_status}}
+					{{range $key, $val := .show_total_status}}
 						<tr>
 							<td class="text-center">
 								<strong>
@@ -56,7 +56,10 @@
 								</td>
 							{{end}}
 							<td class="text-center">
-								<button type="button" class="btn btn-sm btn-warning" onclick="window.location='/edit_information?table_id={{$.table_id}}&information_id={{$val.Id}}'">Edit</button>
+							<button type="button" class="btn btn-sm btn-warning" onclick="window.location='{{$.url_current_table}}/information/{{$val.Id}}/edit'">Edit</button>
+							{{if compare $.permission "admin"}}
+								<button type="button" class="btn btn-sm btn-danger" onclick="window.location='{{$.url_current_table}}/information/{{$val.Id}}/del'">Del</button>
+							{{end}}
 							</td>
 						</tr>
 					{{end}}

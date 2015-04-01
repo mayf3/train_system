@@ -9,7 +9,9 @@
 <div class="container" role="main">
 	<div class="row-fluid">
 		<div class="span12">
-		    <button class="btn btn-primary" type="button" onclick="window.location='{{ .url_create_table }}'">Create Table</button>
+			{{if compare $.permission "admin"}}
+		    	<button class="btn btn-primary" type="button" onclick="window.location='{{ .url_create_table }}'">Create Table</button>
+			{{end}}
             <p></p>
 			<table class="table table-striped">
 				<thead>

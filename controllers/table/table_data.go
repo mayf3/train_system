@@ -35,8 +35,9 @@ func (this *TableController) SettingPost() {
 func (this *TableController) Edit() {
 	this.mustTable()
 	table_id, _ := this.getTableId()
-	this.Data["data[problem_list]"] = utils.GenerateProblemList(table_id)
-	this.Data["data[total_status]"] = utils.GenerateTable(table_id)
+	this.Data["show_total_status"] = utils.GenerateTable(table_id)
+	this.Data["other_problem_list"] = utils.GenerateProblemList(table_id)
+	this.Data["url_current_table"] = fmt.Sprintf("/table/%d", table_id)
 	this.TplNames = "table/edit_table.tpl"
 }
 
@@ -44,9 +45,10 @@ func (this *TableController) Edit() {
 func (this *TableController) Show() {
 	this.mustTable()
 	table_id, _ := this.getTableId()
-	this.Data["data[current_table]"], this.Data["data[hust_table"] = this.generate()
-	this.Data["data[problem_list]"] = utils.GenerateProblemList(table_id)
-	this.Data["data[total_status]"] = utils.GenerateTable(table_id)
+	this.Data["show_current_table"] = this.getTable()
+	this.Data["show_hust_table"] = this.generate()
+	this.Data["show_total_status"] = utils.GenerateTable(table_id)
+	this.Data["other_problem_list"] = utils.GenerateProblemList(table_id)
 	this.TplNames = "table/show_table.tpl"
 }
 

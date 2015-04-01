@@ -57,20 +57,18 @@ func (this *TableController) del() {
 
 // must make sure table exists
 //TODO Get && Post do same work, move it to tools/tool.go
-func (this *TableController) generate() (models.Tables, [][]string) {
+func (this *TableController) generate() [][]string {
 	var (
-		_     error
 		err   error
 		hust  models.Hust
 		table models.Tables
 	)
-	table.Id, _ = this.getTableId()
-	_ = table.GetTableById(table.Id)
+	table = this.getTable()
 	err = hust.GetHustByTabel(table)
 	if err != nil {
-		return table, nil
+		return nil
 	}
-	return table, this.splitHustTable(hust)
+	return this.splitHustTable(hust)
 }
 
 // must make sure table exists

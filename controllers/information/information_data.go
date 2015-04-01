@@ -8,14 +8,16 @@ import (
 // @router /:information_id:int/edit [get]
 func (this *InformationController) Edit() {
 	this.checkTable()
-	this.Data["form[all_person]"] = this.getAllPerson()
-	if this.checkInformation() {
-		this.Data["form[pre_inforamtion]"] = this.getInformation()
-		this.Data["form[member]"] = this.getMember()
-		this.Data["form[problem_status]"] = this.getProblemStatus()
+	this.Data["other_all_person"] = this.getAllPerson()
+	if this.checkInformation() == true {
+		this.Data["form_pre_information"] = this.getInformation()
+		this.Data["form_pre_member"] = this.getMember()
+		this.Data["form_problem_status"] = this.getProblemStatus()
 	} else {
-		this.Data["form[member]"] = [3]int{0, 0, 0}
+		this.Data["form_pre_member"] = [3]int{0, 0, 0}
 	}
+	table_id, _ := this.getTableId()
+	this.Data["url_current_table"] = fmt.Sprintf("/table/%d", table_id)
 	this.TplNames = "information/edit_information.tpl"
 }
 

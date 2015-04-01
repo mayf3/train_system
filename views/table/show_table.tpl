@@ -9,23 +9,23 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<h1 class="text-center">
-				{{.title}}
+				{{.show_current_table.ContestName}}
 			</h1>
 			
         	<hr></hr>
 
 			<h4>
-				{{.source}}
+				{{.show_current_table.Source}}
 			</h4>
 
 			<h4 class="text-right">
-				{{.date}}
+				{{.show_current_table.CreateTime}}
 			</h4>
 
         	<hr></hr>
 
 			<ul>
-				{{range $key, $val := .total_status}}
+				{{range $key, $val := .show_total_status}}
 					<h4>
 						<li>
 							<strong>
@@ -63,7 +63,7 @@
 						<th class="text-center">
 							Team
 						</th>
-						{{ range $key, $val := .problem_list}}
+						{{ range $key, $val := .other_problem_list}}
 						<th class="text-center">
 							{{ $val}}
 						</th>
@@ -71,7 +71,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					{{range $key, $val := .total_status}}
+					{{range $key, $val := .show_total_status}}
 						<tr>
 							<td class="text-center">
 								<strong>
@@ -91,7 +91,7 @@
         	<hr></hr>
 
 			<table class="table table-striped table-hover table-bordered">
-				{{range $key, $val := .hust_table }}
+				{{range $key, $val := .show_hust_table }}
 					<tr>
 						{{range $in_key, $in_val := $val}}
 							<td>
@@ -101,10 +101,12 @@
 					</tr>
 				{{end}} 
 			</table>
-			<form id="table" method="post" action="#">
-				<input name="hust_table" type="input">
-				<button type="submit" class="btn btn-success">Submit</button>
-			</form>
+			{{if compare $.permission "admin"}}
+				<form id="table" method="post" action="#">
+					<input name="hust_table" type="input">
+					<button type="submit" class="btn btn-success">Submit</button>
+				</form>
+			{{end}}
 		</div>
 	</div>
 </div>

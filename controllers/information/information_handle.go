@@ -11,14 +11,10 @@ import (
 // getPreInformation
 func (this *InformationController) getPreInformation() models.Information {
 	var (
-		_           error
 		err         error
-		table       models.Tables
 		information models.Information
 	)
-	table.Id, _ = this.getTableId()
-	_ = table.GetTableById(table.Id)
-	information.Id, err = this.getInformationId()
+	information = this.getInformation()
 	if err != nil {
 		return models.Information{}
 	}

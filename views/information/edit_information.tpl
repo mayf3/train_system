@@ -45,54 +45,69 @@ $(document).ready(function(){
 		<div class="span12">
 			<form id="table" method="post" action="#">
 				<fieldset>
-				    <legend>Edit Team</legend> 
+				    <legend>Edit Team Information</legend> 
 
-                    <label>Team name</label>
-                    <input name="name" type="text" value="{{.Init.Name}}"/> 
-                    <span class="help-block">team name</span> 
+					<div class="row">
+						<div class="col-md-4">
+                    		<label>Team name</label>
+                    		<input name="name" type="text" value="{{.form_pre_information.Name}}"/> 
+                    		<span class="help-block">team name</span> 
 
-                    <label>Team Rank</label>
-                    <input name="rank" type="text" value="{{.Init.Rank}}"/> 
-                    <span class="help-block">team rank without other board</span> 
+                    		<label>Team Rank</label>
+                    		<input name="rank" type="text" value="{{.form_pre_information.Rank}}"/> 
+                    		<span class="help-block">team rank without other board</span> 
 
-					{{range $key, $val := .show_members}}
-						<label> Member </label>
-						<select id="member{{$key}}" name="member{{$key}}" class="selectpicker" value="{{$val}}">
-							<option value="0" {{if compare $val 0}} selected="selected" {{end}}></option>
-							{{range $in_key, $in_val := $.all_person}}
-								<option value="{{$in_val.Id}}" {{if compare $in_val.Id $val}} selected="selected" {{end}}>{{$in_val.Grade}}-{{$in_val.Name}}</option>
+							{{range $key, $val := .form_pre_member}}
+								<label> Member </label>
+								<select id="member{{$key}}" name="member{{$key}}" class="selectpicker" value="{{$val}}">
+									<option value="0" {{EqThenSelected $val 0 | Attr}}></option>
+									{{range $in_key, $in_val := $.other_all_person}}
+										<option value="{{$in_val.Id}}" {{EqThenSelected $val $in_val.Id | Attr}}>{{$in_val.Grade}}-{{$in_val.Name}}</option>
+									{{end}}
+								</select>
+                    			<span class="help-block">team member</span> 
 							{{end}}
-						</select>
-                    	<span class="help-block">team member</span> 
-					{{end}}
 
-					{{ range $key, $val := .problem_list}}
-						<label> Problem {{$val.Name}} :  </label>
-						<div class="form-group">
-						    <label class="checkbox-inline">
-								<input type="checkbox" value="1" name="problem_participant{{$key}}[]" {{if compare $val.Member1 1}} checked="true" {{end}}><label id="checkbox_label" name="checkbox0" >我是１号</label>
-							</label>
-						    <label class="checkbox-inline">
-								<input type="checkbox" value="2" name="problem_participant{{$key}}[]" {{if compare $val.Member2 1}} checked="true" {{end}}><label id="checkbox_label" name="checkbox1" >我是２号</label>
-							</label>
-						    <label class="checkbox-inline">
-								<input type="checkbox" value="4" name="problem_participant{{$key}}[]" {{if compare $val.Member3 1}} checked="true" {{end}}><label id="checkbox_label" name="checkbox2" >我是３号</label>
-							</label>
+                    		<button type="submit" class="btn btn-success">Submit</button>
+							<button type="button" class="btn btn-warning" onclick="window.location='{{.url_current_table}}/edit'">Cancel</button>
 						</div>
-						<div class="form-group">
-							<label class="radio-inline">
-								<input type="radio"  value="0" name="problem_status{{$key}}" {{if compare $val.Status 0}} checked="true" {{end}}><label id="radio_label">未ＡＣ</label>
-							</label>
-							<label class="radio-inline">
-								<input type="radio"  value="1" name="problem_status{{$key}}" {{if compare $val.Status 1}} checked="true" {{end}}><label id="radio_label">ＡＣ</label>
-							</label>
-							<label class="radio-inline">
-								<input type="radio"  value="2" name="problem_status{{$key}}" {{if compare $val.Status 2}} checked="true" {{end}}><label id="radio_label">赛后ＡＣ</label>
-							</label>
-						</div>
-					{{end}}
 
-                    <button type="submit" class="btn btn-success">Submit</button>
+						<div class="col-md-8">
+							<table class="table table-striped table-hover table-bordered">
+								<tbody>
+									{{ range $key, $val := .form_problem_status}}
+										<tr>
+											<td class="text-center">
+												<label> {{$val.Name}} :  </label>
+											</td>
+											<td class="text-center">
+												    <label class="checkbox-inline">
+														<input type="checkbox" value="1" name="problem_participant{{$key}}[]" {{if compare $val.Member1 1}} checked="true" {{end}}><label id="checkbox_label" name="checkbox0" >我是１号</label>
+													</label>
+												    <label class="checkbox-inline">
+														<input type="checkbox" value="2" name="problem_participant{{$key}}[]" {{if compare $val.Member2 1}} checked="true" {{end}}><label id="checkbox_label" name="checkbox1" >我是２号</label>
+													</label>
+												    <label class="checkbox-inline">
+														<input type="checkbox" value="4" name="problem_participant{{$key}}[]" {{if compare $val.Member3 1}} checked="true" {{end}}><label id="checkbox_label" name="checkbox2" >我是３号</label>
+													</label>
+											</td>
+											<td class="text-center">
+													<label class="radio-inline">
+														<input type="radio"  value="0" name="problem_status{{$key}}" {{if compare $val.Status 0}} checked="true" {{end}}><label id="radio_label">未ＡＣ</label>
+													</label>
+													<label class="radio-inline">
+														<input type="radio"  value="1" name="problem_status{{$key}}" {{if compare $val.Status 1}} checked="true" {{end}}><label id="radio_label">ＡＣ</label>
+													</label>
+													<label class="radio-inline">
+														<input type="radio"  value="2" name="problem_status{{$key}}" {{if compare $val.Status 2}} checked="true" {{end}}><label id="radio_label">赛后ＡＣ</label>
+													</label>
+											</td>
+										</td>
+									{{end}}
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</fieldset>
 		    </form>
 		</div>

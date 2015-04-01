@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -11,7 +12,8 @@ import (
 //	"github.com/astaxie/beego/orm"
 	. "github.com/smartystreets/goconvey/convey"
 
-//	_ "train_system/routers"
+	_ "train_system/routers"
+	_ "train_system/initialize"
 //	. "train_system/models"
 )
 
@@ -23,8 +25,8 @@ func init() {
 
 
 //TestMain is a sample to run an endpoint test
-func TestMain(t *testing.T) {
-	r, _ := http.NewRequest("GET", "/table/4/show", nil)
+func Tmp(t *testing.T) {
+	r, _ := http.NewRequest("GET", "/table/4/information/create", nil)
 	w := httptest.NewRecorder()
 	beego.BeeApp.Handlers.ServeHTTP(w, r)
 
@@ -40,3 +42,8 @@ func TestMain(t *testing.T) {
 	})
 }
 
+func TestRouter(t *testing.T){
+	fmt.Println(beego.UrlFor("InformationController.Edit", ":information_id", 3, ":table_id", 4))
+	fmt.Println(beego.UrlFor("TableController.Show", ":table_id", 4))
+	fmt.Println(beego.UrlFor("RootController.Index"))
+}

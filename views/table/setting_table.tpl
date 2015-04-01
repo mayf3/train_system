@@ -18,7 +18,7 @@
                     	<label>Problem Number</label>
 						<select name="problem_number" class="selectpicker" value="{{$.form_problem_number}}">
 							{{range $key, $val := .base_problem_list}}
-								<option value="{{$key}}" selected="{{EqThenSelected $key $.form_problem_number | html}}"> {{$val}}</option>
+								<option value="{{$key}}" {{EqThenSelected $key $.form_problem_number | Attr}}> {{$val}}</option>
 							{{end}}
 						</select>
                     	<span class="help-block">total problem number</span> 
