@@ -1,12 +1,16 @@
-{{template "base/head.tpl" .}}
+{{template "base/base.tpl" .}}
 
+{{define "meta"}}
+	<title>Person - SYSU Train System</title>
+{{end}}
+
+{{define "body"}}
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#nav_index").attr("class", "");
 	$("#nav_person").attr("class", "active");
 });
 </script>
-
 
 <p></p>
 <div class="container" role="main">
@@ -66,5 +70,4 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
-
-{{template "base/tail.tpl" .}}
+{{end}}

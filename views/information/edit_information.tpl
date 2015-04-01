@@ -1,5 +1,10 @@
-{{template "base/head.tpl" .}}
+{{template "base/base.tpl" .}}
 
+{{define "meta"}}
+	<title>Edit Information - SYSU Train System</title>
+{{end}}
+
+{{define "body"}}
 <script type="text/javascript">
 $(document).ready(function(){
 		$("label[name='checkbox0']").each(function(){
@@ -93,5 +98,4 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
-
-{{template "base/tail.tpl" .}}
+{{end}}

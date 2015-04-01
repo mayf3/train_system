@@ -1,5 +1,10 @@
-{{template "base/head.tpl" .}}
+{{template "base/base.tpl" .}}
 
+{{define "meta"}}
+	<title>SYSU Train System</title>
+{{end}}
+
+{{define "body"}}
 <p></p>
 <div class="container" role="main">
 	<div class="row-fluid">
@@ -51,5 +56,4 @@
 		</div>
 	</div>
 </div>
-
-{{template "base/tail.tpl" .}}
+{{end}}
