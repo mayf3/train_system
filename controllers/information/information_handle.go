@@ -63,6 +63,7 @@ func (this *InformationController) getMember() []int {
 func (this *InformationController) getProblemStatus() []ProblemStatus {
 	var (
 		_                  error
+		err                  error
 		table              models.Tables
 		information        models.Information
 		problem            models.Problem
@@ -72,6 +73,18 @@ func (this *InformationController) getProblemStatus() []ProblemStatus {
 	)
 	table.Id, _ = this.getTableId()
 	_ = table.GetTableById(table.Id)
+	information.Id, err = this.getInformationId()
+	if err != nil{
+		for i := 0; i < table.ProblemNumber; i++ {
+			problem_status.Name = string(rune(i + 65))
+			problem_status.Member1 = 0
+			problem_status.Member2 = 0
+			problem_status.Member3 = 0
+			problem_status.Status = 0
+			all_problem_status = append(all_problem_status, problem_status)
+		}
+		return all_problem_status
+	}
 	information = this.getInformation()
 	for i := 0; i < table.ProblemNumber; i++ {
 		problem_status.Name = string(rune(i + 65))

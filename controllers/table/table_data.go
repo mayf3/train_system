@@ -38,6 +38,7 @@ func (this *TableController) Edit() {
 	this.Data["show_total_status"] = utils.GenerateTable(table_id)
 	this.Data["other_problem_list"] = utils.GenerateProblemList(table_id)
 	this.Data["url_current_table"] = fmt.Sprintf("/table/%d", table_id)
+	this.Data["url_create_information"] = fmt.Sprintf("/table/%d/information/0/edit", table_id)
 	this.TplNames = "table/edit_table.tpl"
 }
 

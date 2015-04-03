@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-			<button class="btn btn-primary" type="button" onclick="window.location='{{.url_current_table}}/information/create'">Create New Team</button>
+			<button class="btn btn-primary" type="button" onclick="window.location='{{.url_create_information}}'">Create New Team</button>
 			<ul class="list-inline">
 				<li class="text-muted">
 					<h3>

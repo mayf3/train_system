@@ -7,7 +7,6 @@
 		-->
 		{{template "meta" .}}
 
-		<link rel="shortcut icon" href="{{.AppUrl}}static/img/favicon.png" />
         <link rel="stylesheet" href="/static/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/static/css/theme.css">

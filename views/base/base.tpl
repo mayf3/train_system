@@ -6,7 +6,7 @@
     <body role="document">
 		<div id="wrapper">
 			{{template "base/navbar.tpl" .}}
-			<div id="main" class="container">
+			<div id="main" class="container-fluid">
 			{{template "body" .}}
 			</div>
 			<div class="wrapper-push"></div>
