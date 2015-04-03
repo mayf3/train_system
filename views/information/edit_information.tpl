@@ -60,7 +60,7 @@ $(document).ready(function(){
 
 							<div class="form-group">
 								<div class="col-md-4">
-                    				<label class="control-label">Team Rame</label>
+                    				<label class="control-label">Team Rank</label>
 								</div>
 								<div class="col-md-8">
 									<input class="form-control" name="rank" type="text" value="{{.form_pre_information.Rank}}"/> 
@@ -120,15 +120,15 @@ $(document).ready(function(){
 											<td>
 												<div class="input-group">
 											    	<span class="input-group-addon">
-														<input type="radio"  value="0" name="problem_status{{$key}}" {{if compare $val.Status 0}} checked="true" {{end}}>
+														<input type="radio"  value="0" name="problem_status{{$key}}" {{EqThenChecked $val.Status 0 | Attr}}>
 													</span>
 													<label class="form-control" id="radio_label">未ＡＣ</label>
 													<span class="input-group-addon">
-														<input type="radio"  value="1" name="problem_status{{$key}}" {{if compare $val.Status 1}} checked="true" {{end}}>
+														<input type="radio"  value="1" name="problem_status{{$key}}" {{EqThenChecked $val.Status 1 | Attr}}>
 													</span>
 													<label class="form-control" id="radio_label">ＡＣ</label>
 													<span class="input-group-addon">
-														<input type="radio"  value="2" name="problem_status{{$key}}" {{if compare $val.Status 2}} checked="true" {{end}}>
+														<input type="radio"  value="2" name="problem_status{{$key}}" {{EqThenChecked $val.Status 2 | Attr}}>
 													</span>
 													<label class="form-control" id="radio_label">赛后ＡＣ</label>
 												</div>

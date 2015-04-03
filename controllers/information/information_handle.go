@@ -127,11 +127,13 @@ func (this *InformationController) submitInformation() {
 	information.Table = &table
 	information.Rank, err = strconv.Atoi(this.GetString("rank"))
 	information.Name = this.GetString("name")
-	if err == nil && information_id > 0 {
+	fmt.Println(information)
+	if information_id > 0 {
 		err = information.Update()
 	} else {
 		err = information.Insert()
 	}
+	fmt.Println(information)
 	for i := 0; i < 3; i++ {
 		person_id, err = strconv.Atoi(this.GetString(fmt.Sprintf("%s%d", "member", i)))
 		if err == nil && person_id > 0 {
