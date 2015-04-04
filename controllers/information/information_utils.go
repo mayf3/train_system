@@ -16,7 +16,7 @@ func (this *InformationController) getTableId() (table_id int, err error) {
 
 func (this *InformationController) getInformationId() (information_id int, err error) {
 	information_id, err = this.GetInt(":information_id")
-	if err != nil {
+	if err != nil || information_id == 0{
 		return 0, errors.New("no information id")
 	}
 	return information_id, nil
@@ -52,7 +52,7 @@ func (this *InformationController) checkInformation() bool {
 		information models.Information
 	)
 	information.Id, err = this.getInformationId()
-	if err != nil {
+	if err != nil  || information.Id == 0{
 		return false
 	}
 	err = information.GetInformationById(information.Id)
