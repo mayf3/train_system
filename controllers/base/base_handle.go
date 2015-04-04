@@ -1,12 +1,13 @@
 package base
 
-func (this *BaseController) prepare() {
-	var (
-		tmp string
-	)
-	this.Data["Permission"] = "guest"
-	tmp = this.Input().Get("admin")
-	if tmp == "true" {
-		this.Data["Permission"] = "admin"
+import(
+//	"fmt"
+	"strings"
+)
+
+func (this *BaseController) Prepare() {
+	this.Data["permission"] = "guest"
+	if strings.HasPrefix(this.Ctx.Input.Uri(), "/admin") == true{
+		this.Data["permission"] = "admin"
 	}
 }

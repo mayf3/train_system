@@ -1,8 +1,6 @@
 package table
 
 import (
-	"errors"
-	"strings"
 
 	"train_system/models"
 )
@@ -59,20 +57,18 @@ func (this *TableController) del() {
 
 // must make sure table exists
 //TODO Get && Post do same work, move it to tools/tool.go
-func (this *TableController) generate() (models.Tables, [][]string) {
+func (this *TableController) generate() [][]string {
 	var (
-		_     error
 		err   error
 		hust  models.Hust
 		table models.Tables
 	)
-	table.Id, _ = this.getTableId()
-	_ = table.GetTableById(table.Id)
+	table = this.getTable()
 	err = hust.GetHustByTabel(table)
 	if err != nil {
-		return table, nil
+		return nil
 	}
-	return table, this.splitHustTable(hust)
+	return this.splitHustTable(hust)
 }
 
 // must make sure table exists
@@ -92,44 +88,4 @@ func (this *TableController) submitHust() {
 		hust.Insert()
 	}
 	hust.Update()
-}
-
-// utils
-
-func (this *TableController) getTableId() (table_id int, err error) {
-	table_id, err = this.GetInt(":table_id")
-	if err != nil {
-		return 0, errors.New("no table id")
-	}
-	return table_id, nil
-}
-
-func (this *TableController) splitHustTable(hust models.Hust) [][]string {
-	var (
-		hust_table     []string
-		all_hust_table [][]string
-	)
-	hust_table = strings.Split(hust.Context, string(rune(32)))
-	for _, val := range hust_table {
-		all_hust_table = append(all_hust_table, strings.Split(val, string(rune(9))))
-	}
-	for i := 1; i < len(all_hust_table); i++ {
-		all_hust_table[i] = all_hust_table[i][0 : len(all_hust_table[i])-1]
-	}
-	return all_hust_table
-}
-
-func (this *TableController) checkTable() {
-	var (
-		err   error
-		table models.Tables
-	)
-	table.Id, err = this.getTableId()
-	if err != nil {
-		this.Abort("Error table id")
-	}
-	err = table.GetTableById(table.Id)
-	if err != nil {
-		this.Abort("Error table id")
-	}
 }

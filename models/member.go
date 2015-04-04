@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"github.com/astaxie/beego/orm"
 )
 
@@ -26,6 +27,7 @@ func (this *Member) GetMemberByInformation(information Information) ([]Member, e
 // Single
 func (this *Member) GetMemberByInformationAndOrder(information Information, order int) error{
 	o := orm.NewOrm()
+	fmt.Println(information)
 	err := o.QueryTable("member").Filter("Information", information).Filter("Order", order).One(this)
 	return err
 }

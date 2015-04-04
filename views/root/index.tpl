@@ -1,10 +1,17 @@
-{{template "base/head.tpl" .}}
+{{template "base/base.tpl" .}}
 
+{{define "meta"}}
+	<title>SYSU Train System</title>
+{{end}}
+
+{{define "body"}}
 <p></p>
 <div class="container" role="main">
 	<div class="row-fluid">
 		<div class="span12">
-		    <button class="btn btn-primary" type="button" onclick="window.location='/create_table'">Create Table</button>
+			{{if compare $.permission "admin"}}
+		    	<button class="btn btn-primary" type="button" onclick="window.location='{{ .url_create_table }}'">Create Table</button>
+			{{end}}
             <p></p>
 			<table class="table table-striped">
 				<thead>
@@ -24,7 +31,7 @@
 					</tr>
 				</thead>
 				<tbody>
-                    {{range $key, $val := .Init}}
+                    {{range $key, $val := .show_all_table}}
 					<tr>
                         <td>
                             {{$val.CreateTime}}
@@ -37,11 +44,11 @@
                             {{$val.Source}}
 						</td>
 						<td>
-                           <button type="button" class="btn btn-sm btn-info" onclick="window.location='/generate_table?table_id={{$val.Id}}'">Show</button>
-                            <button type="button" class="btn btn-sm btn-success" onclick="window.location='/create_table?table_id={{$val.Id}}'">Edit_Table</button>
-                            <button type="button" class="btn btn-sm btn-warning" onclick="window.location='/edit_table?table_id={{$val.Id}}'">Edit_Team</button>
-							{{if $.show}}
-                            	<button type="button" class="btn btn-sm btn-warning" onclick="window.location='/action?action=DeleteTable&id={{$val.Id}}'">Delete</button>
+                           <button type="button" class="btn btn-sm btn-info" onclick="window.location='/table/{{$val.Id}}/show'">Show</button>
+                            <button type="button" class="btn btn-sm btn-warning" onclick="window.location='/table/{{$val.Id}}/edit'">Edit Team</button>
+							{{if compare $.permission "admin"}}
+                            	<button type="button" class="btn btn-sm btn-success" onclick="window.location='/table/{{$val.Id}}/setting'">Setting Team</button>
+                            	<button type="button" class="btn btn-sm btn-warning" onclick="window.location='/table/{{$val.Id}}/del'">Delete</button>
 							{{end}}
 						</td>
 					</tr>
@@ -51,5 +58,4 @@
 		</div>
 	</div>
 </div>
-
-{{template "base/tail.tpl" .}}
+{{end}}

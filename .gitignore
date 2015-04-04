@@ -3,3 +3,4 @@
 *.exe
 train_system
 lastupdate.tmp
+test/*

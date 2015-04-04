@@ -11,14 +11,10 @@ import (
 // getPreInformation
 func (this *InformationController) getPreInformation() models.Information {
 	var (
-		_           error
 		err         error
-		table       models.Tables
 		information models.Information
 	)
-	table.Id, _ = this.getTableId()
-	_ = table.GetTableById(table.Id)
-	information.Id, err = this.getInformationId()
+	information = this.getInformation()
 	if err != nil {
 		return models.Information{}
 	}
@@ -67,6 +63,7 @@ func (this *InformationController) getMember() []int {
 func (this *InformationController) getProblemStatus() []ProblemStatus {
 	var (
 		_                  error
+		err                  error
 		table              models.Tables
 		information        models.Information
 		problem            models.Problem
@@ -76,6 +73,18 @@ func (this *InformationController) getProblemStatus() []ProblemStatus {
 	)
 	table.Id, _ = this.getTableId()
 	_ = table.GetTableById(table.Id)
+	information.Id, err = this.getInformationId()
+	if err != nil{
+		for i := 0; i < table.ProblemNumber; i++ {
+			problem_status.Name = string(rune(i + 65))
+			problem_status.Member1 = 0
+			problem_status.Member2 = 0
+			problem_status.Member3 = 0
+			problem_status.Status = 0
+			all_problem_status = append(all_problem_status, problem_status)
+		}
+		return all_problem_status
+	}
 	information = this.getInformation()
 	for i := 0; i < table.ProblemNumber; i++ {
 		problem_status.Name = string(rune(i + 65))
@@ -109,16 +118,16 @@ func (this *InformationController) submitInformation() {
 		person         models.Person
 		problem        models.Problem
 	)
-	information_id, err = strconv.Atoi(this.GetString("information_id"))
+	table_id, err = this.getTableId()
+	err = table.GetTableById(table_id)
+	information_id, err = this.getInformationId()
 	if err == nil && information_id > 0 {
 		err = information.GetInformationById(information_id)
 	}
-	table_id, err = strconv.Atoi(this.GetString("table_id"))
-	err = table.GetTableById(table_id)
 	information.Table = &table
 	information.Rank, err = strconv.Atoi(this.GetString("rank"))
 	information.Name = this.GetString("name")
-	if err == nil && information_id > 0 {
+	if information_id > 0 {
 		err = information.Update()
 	} else {
 		err = information.Insert()
@@ -168,5 +177,5 @@ func (this *InformationController) submitInformation() {
 			problem.Insert()
 		}
 	}
-	this.Redirect(fmt.Sprintf("/edit_table?table_id=%d", table.Id), 302)
+	this.Redirect(fmt.Sprintf("/table/%d/edit", table.Id), 302)
 }
