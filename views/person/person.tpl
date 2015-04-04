@@ -1,12 +1,16 @@
-{{template "head.tpl" .}}
+{{template "base/base.tpl" .}}
 
+{{define "meta"}}
+	<title>Person - SYSU Train System</title>
+{{end}}
+
+{{define "body"}}
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#nav_index").attr("class", "");
 	$("#nav_person").attr("class", "active");
 });
 </script>
-
 
 <p></p>
 <div class="container" role="main">
@@ -34,7 +38,7 @@ $(document).ready(function(){
 						<th>
 							Grade
 						</th>
-						{{if $.show}}
+						{{if compare $.permission "admin"}}
 							<th>
                         	    Operation
 							</th>
@@ -42,21 +46,30 @@ $(document).ready(function(){
 					</tr>
 				</thead>
 				<tbody>
-                    {{range $key, $val := .all_person}}
+                    {{range $key, $val := .show_all_person}}
 					<tr>
-                        <td>
+						<td class="text-center">
                             {{$val.Id}}
 						</td>
-					    <td>
+						<td class="text-center">
                             {{$val.Name}}
 						</td>
-						<td>
+						<td class="text-center">
                             {{$val.Grade}}
 						</td>
-						{{if $.show}}
-							<td>
-                        		<button type="button" class="btn btn-sm btn-info" onclick="window.location='/person/edit?person_id={{$val.Id}}'">Edit</button>
-                            	<button type="button" class="btn btn-sm btn-warning" onclick="window.location='/person/delete?person_id={{$val.Id}}'">Delete</button>
+						{{if compare $.permission "admin"}}
+							<td class="text-center">
+								<div class="row">
+									<div class="col-md-6">
+										<form id="table" method="post" action="/person/{{$val.Id}}/edit">
+                        					<button type="submit" class="btn btn-sm btn-info">Edit</button>
+										</form>
+									</div>
+									<div class="col-md-6">
+										<form id="table" method="post" action="/person/{{$val.Id}}/del">
+                            				<button type="submit" class="btn btn-sm btn-warning">Del</button>
+										</form>
+									</div>
 							</td>
 						{{end}}
 					</tr>
@@ -66,5 +79,4 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
-
-{{template "tail.tpl" .}}
+{{end}}

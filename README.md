@@ -1,57 +1,17 @@
-init sql:
-	go run main.go orm syncdb -db=default -force=true -v=true
+### SYSU Train System
 
-model construct:
+## 一些不确定的地方
+暂定的设计方法是
+#model：
+包括负责和数据库交互的类、经常用到的类
+#controller： 
+分为三个文件，假定该系统名为table，则有
+table\_data ： 负责路由并将数据传给template
+table\_handle : table\_data内调用table\_handle的函数，暂定是包含复杂逻辑的函数
+table\_utils ： 暂定是table\_handle和table\_data中重复使用的逻辑
 
-type Tables struct {
-	Id				int `orm:"pk;auto"`
-	ContestName		string
-	ProblemNumber	int
-	Source			string
-	CreateTime		time.Time      `orm:"auto_now_add;type(datetime)"`
-	Information		[]*Information `orm:"reverse(many)"`
-}
+问题在于utils和handle之间的区分，经常会遇到将handle中的复杂逻辑拆分之后，就完全变成多个utils了
+所以暂定想法是，handle内重复出现三次以上的逻辑就抽出来放入utils
 
-type Information struct {
-	Id		int			`orm:"pk;auto"`
-	Rank	int
-	Table	*Tables		`orm:"rel(fk)"`
-	Member	[]*Member	`orm:"reverse(many)"`
-	Problem []*Problem	`orm:"reverse(many)"`
-}
-
-type Member struct{
-	Id			int				`orm:"pk;auto"`
-	Order		int
-	Person		*Person			`orm:"rel(fk)"`
-	Information	*Information	`orm:"rel(fk)"`
-}
-
-type Problem struct {
-	Id			int				`orm:"pk;auto"`
-	Number		int
-	Participant	int
-	Status		int
-	Information	*Information	`orm:"rel(fk)"`
-}
-
-type Person struct{
-	Id		int		`orm:"pk;auto"`
-	Name	string
-	Grade	int
-	Member	[]*Member	`orm:"reverse(many)"`
-}
-
-MySQL 中文输入问题：
-	my.cnf中设置
-		[client]
-		default-character-set = utf8
-		[mysql]
-		default-character-set = utf8
-		[mysqld]
-		default-character-set = utf8
-	MySQL 5.5之后[mysqld]段设置要变更：
-		[mysqld]
-		default-storage-engine = INNODB
-		character-set-server = utf8
-		collation-server = utf8_general_ci
+## TODO
+timeline

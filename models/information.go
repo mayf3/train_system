@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"github.com/astaxie/beego/orm"
 )
 
@@ -35,6 +36,7 @@ func (this *Information) GetInformationById(id int) error {
 func (this *Information) Insert() error{
 	o := orm.NewOrm()
 	_, err := o.Insert(this)
+	fmt.Println(err)
 	return err
 }
 
