@@ -8,18 +8,18 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-			<h1 class="text-center">
+			<h2 class="text-center">
 				{{.show_current_table.ContestName}}
-			</h1>
+			</h2>
 			
         	<hr></hr>
 
 			<h4>
-				{{.show_current_table.Source}}
+				Source : {{.show_current_table.Source}}
 			</h4>
 
 			<h4 class="text-right">
-				{{.show_current_table.CreateTime}}
+				Date : {{FormatTime .show_current_table.CreateTime}}
 			</h4>
 
         	<hr></hr>
@@ -38,21 +38,29 @@
 					</h4>
 				{{end}}
 			</ul>
+
         	<hr></hr>
+
 			<ul class="list-inline">
 				<li class="text-muted">
 					<h3>
-						未AC
+						<strong>
+							未AC
+						</strong>
 					</h3>
 				</li>
 				<li class="text-success">
 					<h3>
-						AC
+						<strong>
+							AC
+						</strong>
 					</h3>
 				</li>
 				<li class="text-danger">
 					<h3>
-						赛后AC
+						<strong>
+							赛后AC
+						</strong>
 					</h3>
 				</li>
 			</ul>
@@ -80,7 +88,9 @@
 							</td>
 							{{range $in_key, $in_val := $val.Status}}
 								<td class="text-center {{$in_val.Colour}}">
+									<strong>
 									{{$in_val.Context}}
+									</strong>
 								</td>
 							{{end}}
 						</tr>

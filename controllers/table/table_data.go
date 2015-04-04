@@ -61,7 +61,7 @@ func (this *TableController) ShowPost() {
 	this.Redirect(fmt.Sprintf("/table/%d/show", table_id), 302)
 }
 
-// @router /:table_id:int/del [post]
+// @router /:table_id:int/del [get]
 func (this *TableController) DelPost() {
 	this.mustTable()
 	this.del()

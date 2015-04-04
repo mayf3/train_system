@@ -2,6 +2,7 @@ package initialize
 
 import (
 //	"fmt"
+	"time"
 	"html/template"
 
 	"github.com/astaxie/beego"
@@ -29,10 +30,16 @@ func EqThenChecked(a, b int) string{
 	return ""
 }
 
+func FormatTime(t time.Time) string{
+	return t.Format("2006-01-02")
+}
+
 func init(){
 	beego.AddFuncMap("Attr", Attr)
 	beego.AddFuncMap("Safe", Safe)
 
 	beego.AddFuncMap("EqThenSelected", EqThenSelected)
 	beego.AddFuncMap("EqThenChecked", EqThenChecked)
+
+	beego.AddFuncMap("FormatTime", FormatTime)
 }
