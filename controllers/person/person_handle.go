@@ -34,7 +34,7 @@ func (this *PersonController) add() {
 	if err != nil {
 		this.Abort("Grade rrror")
 	}
-	if person.IsExistByNameAndGrade(name, grade) == false {
+	if person.IsExistByNameAndGrade(name, grade) == true{
 		this.Abort("Aleady exists person")
 	}
 	person.Name = name
@@ -47,7 +47,7 @@ func (this *PersonController) del() {
 		err    error
 		person models.Person
 	)
-	person.Id, err = this.GetInt("person_id")
+	person.Id, err = this.GetInt(":person_id")
 	if err != nil {
 		this.Abort("Error person id")
 	}

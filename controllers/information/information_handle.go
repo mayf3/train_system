@@ -118,22 +118,20 @@ func (this *InformationController) submitInformation() {
 		person         models.Person
 		problem        models.Problem
 	)
-	information_id, err = strconv.Atoi(this.GetString("information_id"))
+	table_id, err = this.getTableId()
+	err = table.GetTableById(table_id)
+	information_id, err = this.getInformationId()
 	if err == nil && information_id > 0 {
 		err = information.GetInformationById(information_id)
 	}
-	table_id, err = strconv.Atoi(this.GetString("table_id"))
-	err = table.GetTableById(table_id)
 	information.Table = &table
 	information.Rank, err = strconv.Atoi(this.GetString("rank"))
 	information.Name = this.GetString("name")
-	fmt.Println(information)
 	if information_id > 0 {
 		err = information.Update()
 	} else {
 		err = information.Insert()
 	}
-	fmt.Println(information)
 	for i := 0; i < 3; i++ {
 		person_id, err = strconv.Atoi(this.GetString(fmt.Sprintf("%s%d", "member", i)))
 		if err == nil && person_id > 0 {
@@ -179,5 +177,5 @@ func (this *InformationController) submitInformation() {
 			problem.Insert()
 		}
 	}
-	this.Redirect(fmt.Sprintf("/edit_table?table_id=%d", table.Id), 302)
+	this.Redirect(fmt.Sprintf("/table/%d/edit", table.Id), 302)
 }

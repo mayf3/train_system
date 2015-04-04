@@ -2,7 +2,7 @@ package person
 
 //@router / [get]
 func (this *PersonController) Show() {
-	this.Data["data[all_person]"] = this.getAllPerson()
+	this.Data["show_all_person"] = this.getAllPerson()
 	this.TplNames = "person/person.tpl"
 }
 
@@ -15,5 +15,11 @@ func (this *PersonController) Add() {
 // @router /edit [post]
 func (this *PersonController) Edit() {
 	this.edit()
+	this.Redirect("/person", 302)
+}
+
+// @router /:person_id:int/del [post]
+func (this *PersonController) Del() {
+	this.del()
 	this.Redirect("/person", 302)
 }
