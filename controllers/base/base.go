@@ -45,6 +45,7 @@ func (this *BaseController) Prepare() {
 	if this.IsLogin {
 		this.Data["username"] = this.Username
 		this.Data["permission"] = models.GetPowerByUsername(this.Username)
+		fmt.Println(this.Data["permission"])
 	}
 	fmt.Println(this.CruSession)
 	fmt.Println(this.Ctx.Input.Request.Cookies())

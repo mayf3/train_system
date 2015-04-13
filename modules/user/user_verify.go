@@ -49,6 +49,7 @@ func VerifyUserActiveCode(code string) (string, bool) {
 		prefix := code[:utils.TimeLimitCodeLength]
 		data := utils.ToStr(user.Id) + user.Email + user.Username + user.Password + user.Rands
 		if utils.VerifyTimeLimitCode(data, minutes, prefix) {
+			//TODO how to handle this error
 			user.SetVerify()
 			return user.Username, true
 		}
@@ -75,7 +76,7 @@ func VerifyUserResetPwdCode(code string) (string, bool) {
 	if getVerifyUser(&user, code) {
 		// time limit code
 		prefix := code[:utils.TimeLimitCodeLength]
-		data := utils.ToStr(user.Id) + user.Email + user.Username + user.Password + user.Rands // + user.Updated.String()
+		data := utils.ToStr(user.Id) + user.Email + user.Username + user.Password + user.Rands + user.Updated.String()
 		if utils.VerifyTimeLimitCode(data, minutes, prefix) {
 			return user.Username, true
 		}
@@ -88,7 +89,7 @@ func CreateUserResetPwdCode(username string, startInf interface{}) string {
 	var user models.User
 	user.GetUserByUsername(username)
 	minutes := setting.ResetPwdCodeLives
-	data := utils.ToStr(user.Id) + user.Email + user.Username + user.Password + user.Rands // + user.Updated.String()
+	data := utils.ToStr(user.Id) + user.Email + user.Username + user.Password + user.Rands + user.Updated.String()
 	code := utils.CreateTimeLimitCode(data, minutes, startInf)
 	// add tail hex username
 	code += hex.EncodeToString([]byte(user.Username))

@@ -1,6 +1,8 @@
 package models
 
 import (
+	"time"
+
 	"github.com/astaxie/beego/orm"
 
 	"train_system/modules/utils"
@@ -17,6 +19,8 @@ type User struct {
 	Password string
 	Power    string
 	Rands    string
+	Created  time.Time `orm:"auto_now_add"`
+	Updated  time.Time `orm:"auto_now"`
 }
 
 func init() {
@@ -85,6 +89,10 @@ func HasUserByEmail(email string) bool {
 	return o.QueryTable("user").Filter("Email", email).Exist()
 }
 
+func GenerateSalt() string {
+	return utils.GetRandomString(setting.SaltLen)
+}
+
 // Other
 func (this *User) SetVerify() error {
 	this.Verify = true
@@ -93,7 +101,7 @@ func (this *User) SetVerify() error {
 
 // Base
 func (this *User) Insert() error {
-	this.Rands = utils.GetRandomString(setting.SaltLen)
+	this.Rands = GenerateSalt()
 	this.Verify = false
 	this.Score = 0
 	o := orm.NewOrm()

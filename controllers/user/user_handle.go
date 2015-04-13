@@ -21,15 +21,12 @@ func (this *UserController) register() {
 }
 
 func (this *UserController) enter() {
-	var (
-		username string
-		password string
-	)
-	username = this.GetString("user[username]")
-	password = this.GetString("user[password]")
-	fmt.Println(username, " : ", password)
+	username := this.GetString("user[username]")
+	password := this.GetString("user[password]")
+	remember := this.GetString("option[remember_login]")
+	fmt.Println(username, " : ", password, " ---- ", remember)
 	if ok := user.VerifyUser(username, password); ok {
-		user.LoginUser(this.Ctx, username, true)
+		user.LoginUser(this.Ctx, username, remember == "true")
 	} else {
 		this.Abort("Error")
 	}

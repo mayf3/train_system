@@ -20,6 +20,25 @@
 							<a href="/person">Person</a>
 						</li>
                     </ul>
+					{{if compare .permission "member"}}
+                    	<ul class="nav navbar-nav">
+                    	    <li id="nav_person">
+								<a href="/template">Template</a>
+							</li>
+                    	</ul>
+
+                    	<ul class="nav navbar-nav">
+                    	    <li id="nav_person">
+								<a href="/problem">Problem</a>
+							</li>
+                    	</ul>
+
+                    	<ul class="nav navbar-nav">
+                    	    <li id="nav_person">
+								<a href="/source">Source</a>
+							</li>
+                    	</ul>
+					{{end}}
 					{{if .username}}
 						<ul class="nav navbar-nav navbar-right">
                     	    <li id="nav_Enter">

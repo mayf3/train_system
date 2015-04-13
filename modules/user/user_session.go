@@ -1,7 +1,7 @@
 package user
 
 import (
-	"fmt"
+	//	"fmt"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
@@ -39,7 +39,6 @@ func DeleteRememberCookie(ctx *context.Context) {
 
 func LoginUserFromRememberCookie(ctx *context.Context) (username string, success bool) {
 	tmp_username := ctx.GetCookie(setting.CookieUsername)
-	fmt.Println(tmp_username)
 	if len(tmp_username) == 0 {
 		return "", false
 	}
@@ -49,7 +48,7 @@ func LoginUserFromRememberCookie(ctx *context.Context) (username string, success
 		}
 	}()
 	if err := models.HasUserByUsername(tmp_username); err == false {
-		fmt.Println("No username")
+		beego.Debug("LoginUserFromRememberCookie : No user")
 		return "", false
 	}
 	rand := models.GetRandsByUsername(tmp_username)
@@ -57,7 +56,7 @@ func LoginUserFromRememberCookie(ctx *context.Context) (username string, success
 	secret := utils.EncodeMd5(rand + pwd)
 	value, _ := ctx.GetSecureCookie(secret, setting.CookieRememberName)
 	if value != tmp_username {
-		fmt.Println("Don't equal")
+		beego.Debug("LoginUserFromRememberCookie : username and cookie_username don't equal")
 		return "", false
 	}
 	LoginUser(ctx, tmp_username, true)

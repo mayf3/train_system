@@ -4,3 +4,4 @@
 train_system
 lastupdate.tmp
 test/*
+sql/test.sql
