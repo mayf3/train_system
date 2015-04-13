@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// @router /create [get]
 // @router /:information_id:int/edit [get]
 func (this *InformationController) Edit() {
 	this.checkTable()
@@ -21,6 +22,7 @@ func (this *InformationController) Edit() {
 	this.TplNames = "information/edit_information.tpl"
 }
 
+// @router /create [post]
 // @router /:information_id:int/edit [post]
 func (this *InformationController) EditPost() {
 	this.checkTable()

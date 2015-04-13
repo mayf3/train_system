@@ -20,6 +20,29 @@
 							<a href="/person">Person</a>
 						</li>
                     </ul>
+					{{if .username}}
+						<ul class="nav navbar-nav navbar-right">
+                    	    <li id="nav_Enter">
+								<a href="/user/logout">Logout</a>
+							</li>
+                    	</ul>
+						<ul class="nav navbar-nav navbar-right">
+                        	<li id="nav_index">
+								<a href="#">{{.username}}</a>
+							</li>
+						</ul>
+					{{else}}
+						<ul class="nav navbar-nav navbar-right">
+                    	    <li id="nav_Register">
+								<a href="/user/register">Register</a>
+							</li>
+                    	</ul>
+						<ul class="nav navbar-nav navbar-right">
+                    	    <li id="nav_Enter">
+								<a href="/user/enter">Enter</a>
+							</li>
+                    	</ul>
+					{{end}}
                 </div>
             </div>
         </nav>

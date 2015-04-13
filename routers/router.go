@@ -7,6 +7,7 @@ import (
 	. "train_system/controllers/person"
 	. "train_system/controllers/root"
 	. "train_system/controllers/table"
+	. "train_system/controllers/user"
 )
 
 func init() {
@@ -21,13 +22,6 @@ func init() {
 			beego.NSInclude(&InformationController{})))
 	beego.AddNamespace(table)
 
-	admin := beego.NewNamespace("/admin",
-			beego.NSInclude(&RootController{}),
-			beego.NSNamespace("/person",
-				beego.NSInclude(&PersonController{})),
-			beego.NSNamespace("/table",
-				beego.NSInclude(&TableController{}),
-				beego.NSNamespace("/:table_id:int/information",
-					beego.NSInclude(&InformationController{}))))
-	beego.AddNamespace(admin)
+	user := beego.NewNamespace("/user", beego.NSInclude(&UserController{}))
+	beego.AddNamespace(user)
 }

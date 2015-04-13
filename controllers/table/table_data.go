@@ -2,8 +2,6 @@ package table
 
 import (
 	"fmt"
-
-	"train_system/utils"
 )
 
 // @router /create [get]
@@ -11,11 +9,11 @@ import (
 func (this *TableController) Setting() {
 	this.checkTable()
 	_, err := this.getTableId()
-	if err == nil{
+	if err == nil {
 		table := this.getPreTable()
 		this.Data["form_pre_table"] = table
 		this.Data["form_problem_number"] = table.ProblemNumber
-	} else{
+	} else {
 		this.Data["form_problem_number"] = 0
 	}
 	this.Data["base_problem_list"] = this.getProblemList()
@@ -35,8 +33,8 @@ func (this *TableController) SettingPost() {
 func (this *TableController) Edit() {
 	this.mustTable()
 	table_id, _ := this.getTableId()
-	this.Data["show_total_status"] = utils.GenerateTable(table_id)
-	this.Data["other_problem_list"] = utils.GenerateProblemList(table_id)
+	this.Data["show_total_status"] = GenerateTable(table_id)
+	this.Data["other_problem_list"] = GenerateProblemList(table_id)
 	this.Data["url_current_table"] = fmt.Sprintf("/table/%d", table_id)
 	this.Data["url_create_information"] = fmt.Sprintf("/table/%d/information/0/edit", table_id)
 	this.TplNames = "table/edit_table.tpl"
@@ -48,8 +46,8 @@ func (this *TableController) Show() {
 	table_id, _ := this.getTableId()
 	this.Data["show_current_table"] = this.getTable()
 	this.Data["show_hust_table"] = this.generate()
-	this.Data["show_total_status"] = utils.GenerateTable(table_id)
-	this.Data["other_problem_list"] = utils.GenerateProblemList(table_id)
+	this.Data["show_total_status"] = GenerateTable(table_id)
+	this.Data["other_problem_list"] = GenerateProblemList(table_id)
 	this.TplNames = "table/show_table.tpl"
 }
 
