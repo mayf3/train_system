@@ -21,6 +21,11 @@ func init() {
 	orm.DefaultTimeLoc = time.UTC
 	orm.RegisterDriver("mysql", orm.DR_MySQL)
 	orm.RegisterDataBase("default", "mysql", kDataBaseUser+":"+kDataBasePassword+"@/"+kDataBaseName+"?charset=utf8&loc=Asia%2FShanghai")
+
+	username := "abc"
+	email := "a@b.com"
+	password := "123456"
+	RegisterUser(username, email, password)
 }
 
 func TestCanRegistered(t *testing.T) {
@@ -36,7 +41,6 @@ func TestCanRegistered(t *testing.T) {
 	username = "bc"
 	email = "aa@b.com"
 	b7, b8 := CanRegistered(username, email)
-
 	Convey("Subject: Test Station Endpoint\n", t, func() {
 		Convey("b1 must be true", func() {
 			So(b1, ShouldEqual, true)
@@ -72,7 +76,6 @@ func TestVerifyPassword(t *testing.T) {
 	coded := GeneratePassword(pwd, salt)
 	b1 := VerifyPassword(pwd, encoded)
 	b2 := VerifyPassword("fake", encoded)
-
 	Convey("Subject: Test Station Endpoint\n", t, func() {
 		Convey("code must be right", func() {
 			So(encoded, ShouldEqual, coded)
