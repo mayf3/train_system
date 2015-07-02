@@ -7,9 +7,9 @@
 		-->
 		{{template "meta" .}}
 
-        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="/static/css/theme.css">
-		<script type="text/javascript" src="/static/jquery/jquery-2.1.3.min.js"></script>
-
-
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+        <link href="/static/css/roboto.min.css" rel="stylesheet">
+        <link href="/static/css/material-fullpalette.min.css" rel="stylesheet">
+        <link href="/static/css/ripples.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="//fezvrasta.github.io/snackbarjs/dist/snackbar.min.css">

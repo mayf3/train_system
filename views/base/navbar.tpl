@@ -1,67 +1,45 @@
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">SYSU Train System</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li id="nav_index" class="active">
-							<a href="/">Home</a>
-						</li>
-                    </ul>
-                    <ul class="nav navbar-nav">
-                        <li id="nav_person">
-							<a href="/person">Person</a>
-						</li>
-                    </ul>
-					{{if compare .permission "member"}}
-                    	<ul class="nav navbar-nav">
-                    	    <li id="nav_person">
-								<a href="/template">Template</a>
-							</li>
-                    	</ul>
-
-                    	<ul class="nav navbar-nav">
-                    	    <li id="nav_person">
-								<a href="/problem">Problem</a>
-							</li>
-                    	</ul>
-
-                    	<ul class="nav navbar-nav">
-                    	    <li id="nav_person">
-								<a href="/source">Source</a>
-							</li>
-                    	</ul>
-					{{end}}
-					{{if .username}}
-						<ul class="nav navbar-nav navbar-right">
-                    	    <li id="nav_Enter">
-								<a href="/user/logout">Logout</a>
-							</li>
-                    	</ul>
-						<ul class="nav navbar-nav navbar-right">
-                        	<li id="nav_index">
-								<a href="#">{{.username}}</a>
-							</li>
-						</ul>
-					{{else}}
-						<ul class="nav navbar-nav navbar-right">
-                    	    <li id="nav_Register">
-								<a href="/user/register">Register</a>
-							</li>
-                    	</ul>
-						<ul class="nav navbar-nav navbar-right">
-                    	    <li id="nav_Enter">
-								<a href="/user/enter">Enter</a>
-							</li>
-                    	</ul>
-					{{end}}
-                </div>
-            </div>
-        </nav>
+						<div class="bs-component">
+                            <div class="navbar navbar-default">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand" href="javascript:void(0)">Brand</a>
+                                </div>
+                                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a href="javascript:void(0)">Active</a></li>
+                                        <li><a href="javascript:void(0)">Link</a></li>
+                                        <li class="dropdown">
+                                            <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0)">Action</a></li>
+                                                <li><a href="javascript:void(0)">Another action</a></li>
+                                                <li><a href="javascript:void(0)">Something else here</a></li>
+                                                <li class="divider"></li>
+                                                <li class="dropdown-header">Dropdown header</li>
+                                                <li><a href="javascript:void(0)">Separated link</a></li>
+                                                <li><a href="javascript:void(0)">One more separated link</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <form class="navbar-form navbar-left">
+                                        <input class="form-control col-lg-8 empty" placeholder="Search" type="text">
+                                    </form>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a href="javascript:void(0)">Link</a></li>
+                                        <li class="dropdown">
+                                            <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0)">Sign in</a></li>
+                                                <li><a href="javascript:void(0)">Sign up</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="javascript:void(0)">Do nothing</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>

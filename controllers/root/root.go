@@ -1,9 +1,14 @@
 package root
 
 import (
-	"train_system/controllers/base"
+	"github.com/astaxie/beego"
 )
 
 type RootController struct {
-	base.BaseController
+	beego.Controller
+}
+
+// @router / [get]
+func (this *RootController) Index() {
+	this.TplNames = "root/index.tpl"
 }

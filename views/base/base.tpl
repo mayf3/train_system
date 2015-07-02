@@ -4,7 +4,7 @@
 		{{template "base/head.tpl" .}}
     </head>
     <body role="document">
-		<div id="wrapper">
+		<div class="container-fluid" id="wrapper">
 			{{template "base/navbar.tpl" .}}
 			<div id="main" class="container-fluid">
 			{{template "body" .}}

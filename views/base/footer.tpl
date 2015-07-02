@@ -1,13 +1,11 @@
-<hr></hr>
-<div class="container-fluid" align="center">
-    <div class="row-fluid">
-        <div class="span12">
-            <address> 
-				<strong>Here must be have something</strong><br /> 
-				Hi, how are you? <br /> 
-				Fine, thank you.<br /> 
-				<abbr title="Phone">Email:</abbr>daretobeyourself.m.y.f@gmail.com
-			</address>
-        </div>
-    </div>
-</div>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script src="/static/js/ripples.min.js"></script>
+<script src="/static/js/material.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // This command is used to initialize some elements and make them work properly
+        $.material.init();
+    });
+</script>

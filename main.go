@@ -17,7 +17,7 @@ import (
 const (
 	kDataBaseUser     = "iladmin"
 	kDataBasePassword = ""
-	kDataBaseName     = "train"
+	kDataBaseName     = "test"
 )
 
 func init() {
