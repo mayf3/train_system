@@ -85,7 +85,7 @@ func (this *DbAgent) Where(clause string, args ...interface{}) *DbAgent {
 				this.where += ToSqlString(args[cnt])
 			} else {
 				//TODO: add error
-				this.err = errors.New("")
+				this.err = errors.New("Parameter's number no match")
 				break
 			}
 			cnt++

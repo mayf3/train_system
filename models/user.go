@@ -1,122 +1,52 @@
 package models
 
-import (
-	"time"
-
-	"github.com/astaxie/beego/orm"
-
-	"train_system/modules/utils"
-	"train_system/setting"
-)
-
 type User struct {
-	Id       int    `orm:"pk;auto"`
-	Username string `orm:"unique"`
-	Email    string `orm:"unique"`
-	Score    int
-	Verify   bool
-	Nickname string
+	Id       int64
+	Username string
 	Password string
-	Power    string
-	Rands    string
-	Created  time.Time `orm:"auto_now_add"`
-	Updated  time.Time `orm:"auto_now"`
+	Email    string
+	CreateAt int
+	IsActive bool
 }
 
-func init() {
-	orm.RegisterModel(new(User))
+//get a user object (not insert into db in this function)
+func NewUser(info map[string]interface{}) *User {
+	return &User{
+		Username: info["username"].(string),
+		Nickname: info["nickname"].(string),
+		Email:    info["email"].(string),
+	}
 }
 
-// All
+// default add a user and his related profile into database
+func InsertUser(
+	username string,
+	password string,
+	nickname string,
+	email string) (*User, error) {
 
-// Single
-func (this *User) GetUserByUsername(username string) error {
-	o := orm.NewOrm()
-	err := o.QueryTable("user").Filter("Username", username).One(this)
-	return err
-}
+	da := DbAgent{}
+	info := map[string]interface{}{
+		"username":  username,
+		"password":  password,
+		"email":     email,
+		"create_at": time.Now().Format("2006-01-02 15:04:05"),
+	}
 
-// Tool
-func UpdatePassword(username, password string) error {
-	o := orm.NewOrm()
-	var single User
-	err := o.QueryTable("user").Filter("Username", username).One(&single)
+	result, err := da.From("user").Insert(info)
+
 	if err != nil {
-		return err
+		return nil, err
 	}
-	single.Password = password
-	err = single.Update()
-	return err
+
+	user := NewUser(info)
+	user.Id, _ = result.LastInsertId()
+	return user, nil
 }
 
-func GetRandsByUsername(username string) string {
-	o := orm.NewOrm()
-	var maps []orm.Params
-	num, err := o.QueryTable("user").Filter("Username", username).Values(&maps, "Rands")
-	if err != nil || num == 0 {
-		return ""
-	}
-	return maps[0]["Rands"].(string)
-}
-
-func GetPasswordByUsername(username string) string {
-	o := orm.NewOrm()
-	var maps []orm.Params
-	num, err := o.QueryTable("user").Filter("Username", username).Values(&maps, "Password")
-	if err != nil || num == 0 {
-		return ""
-	}
-	return maps[0]["Password"].(string)
-}
-
-func GetPowerByUsername(username string) string {
-	o := orm.NewOrm()
-	var maps []orm.Params
-	num, err := o.QueryTable("user").Filter("Username", username).Values(&maps, "Power")
-	if err != nil || num == 0 {
-		return ""
-	}
-	return maps[0]["Power"].(string)
-}
-
-func HasUserByUsername(username string) bool {
-	o := orm.NewOrm()
-	return o.QueryTable("user").Filter("Username", username).Exist()
-}
-
-func HasUserByEmail(email string) bool {
-	o := orm.NewOrm()
-	return o.QueryTable("user").Filter("Email", email).Exist()
-}
-
-func GenerateSalt() string {
-	return utils.GetRandomString(setting.SaltLen)
-}
-
-// Other
-func (this *User) SetVerify() error {
-	this.Verify = true
-	return this.Update()
-}
-
-// Base
-func (this *User) Insert() error {
-	this.Rands = GenerateSalt()
-	this.Verify = false
-	this.Score = 0
-	o := orm.NewOrm()
-	_, err := o.Insert(this)
-	return err
-}
-
-func (this *User) Update() error {
-	o := orm.NewOrm()
-	_, err := o.Update(this)
-	return err
-}
-
-func (this *User) Delete() error {
-	o := orm.NewOrm()
-	_, err := o.Delete(this)
+// this will delete profile cascade
+func DeleteUser(username string) error {
+	da := DbAgent{}
+	_, err := da.From("user").Where("username = ?", username).Delete()
 	return err
 }
