@@ -1,7 +1,7 @@
 package information
 
 import (
-	"train_system/controllers/base"
+	"github.com/mayf3/train_system/controllers/base"
 )
 
 type InformationController struct {

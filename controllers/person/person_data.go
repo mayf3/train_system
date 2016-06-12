@@ -3,7 +3,7 @@ package person
 //@router / [get]
 func (this *PersonController) Show() {
 	this.Data["show_all_person"] = this.getAllPerson()
-	this.TplNames = "person/person.tpl"
+	this.TplName = "person/person.tpl"
 }
 
 // @router /add [post]

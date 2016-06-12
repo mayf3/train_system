@@ -3,7 +3,7 @@ package person
 import (
 	//"fmt"
 
-	"train_system/models"
+	"github.com/mayf3/train_system/models"
 )
 
 func (this *PersonController) getAllPerson() []models.Person {

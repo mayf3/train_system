@@ -1,7 +1,7 @@
 package root
 
 import (
-	"train_system/models"
+	"github.com/mayf3/train_system/models"
 )
 
 func (this *RootController) getAllTable() []models.Tables {

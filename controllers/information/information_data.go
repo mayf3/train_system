@@ -18,7 +18,7 @@ func (this *InformationController) Edit() {
 	fmt.Println(this.Data["form_problem_status"])
 	table_id, _ := this.getTableId()
 	this.Data["url_current_table"] = fmt.Sprintf("/table/%d", table_id)
-	this.TplNames = "information/edit_information.tpl"
+	this.TplName = "information/edit_information.tpl"
 }
 
 // @router /:information_id:int/edit [post]

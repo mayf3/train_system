@@ -3,7 +3,7 @@ package information
 import (
 	"errors"
 
-	"train_system/models"
+	"github.com/mayf3/train_system/models"
 )
 
 func (this *InformationController) getTableId() (table_id int, err error) {

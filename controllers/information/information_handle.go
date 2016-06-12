@@ -5,7 +5,7 @@ import (
 	"strconv"
 	//	"errors"
 
-	"train_system/models"
+	"github.com/mayf3/train_system/models"
 )
 
 // getPreInformation

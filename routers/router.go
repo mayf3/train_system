@@ -3,10 +3,10 @@ package routers
 import (
 	"github.com/astaxie/beego"
 
-	. "train_system/controllers/information"
-	. "train_system/controllers/person"
-	. "train_system/controllers/root"
-	. "train_system/controllers/table"
+	. "github.com/mayf3/train_system/controllers/information"
+	. "github.com/mayf3/train_system/controllers/person"
+	. "github.com/mayf3/train_system/controllers/root"
+	. "github.com/mayf3/train_system/controllers/table"
 )
 
 func init() {

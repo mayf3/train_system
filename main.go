@@ -7,8 +7,8 @@ import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 
-	_ "train_system/routers"
-	_ "train_system/initialize"
+	_ "github.com/mayf3/train_system/routers"
+	_ "github.com/mayf3/train_system/initialize"
 )
 
 const (
@@ -20,7 +20,7 @@ const (
 func init() {
 	orm.Debug = true
 	orm.DefaultTimeLoc = time.UTC
-	orm.RegisterDriver("mysql", orm.DR_MySQL)
+	orm.RegisterDriver("mysql", orm.DRMySQL)
 	orm.RegisterDataBase("default", "mysql", kDataBaseUser+":"+kDataBasePassword+"@/"+kDataBaseName+"?charset=utf8&loc=Asia%2FShanghai")
 }
 

@@ -4,7 +4,7 @@ import(
 	"errors"
 	"strings"
 
-	"train_system/models"
+	"github.com/mayf3/train_system/models"
 )
 
 // utils

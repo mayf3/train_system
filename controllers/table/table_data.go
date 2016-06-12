@@ -3,7 +3,7 @@ package table
 import (
 	"fmt"
 
-	"train_system/utils"
+	"github.com/mayf3/train_system/utils"
 )
 
 // @router /create [get]
@@ -20,7 +20,7 @@ func (this *TableController) Setting() {
 	}
 	this.Data["base_problem_list"] = this.getProblemList()
 	fmt.Println(this.Data["form_problem_number"])
-	this.TplNames = "table/setting_table.tpl"
+	this.TplName = "table/setting_table.tpl"
 }
 
 // @router /create [post]
@@ -39,7 +39,7 @@ func (this *TableController) Edit() {
 	this.Data["other_problem_list"] = utils.GenerateProblemList(table_id)
 	this.Data["url_current_table"] = fmt.Sprintf("/table/%d", table_id)
 	this.Data["url_create_information"] = fmt.Sprintf("/table/%d/information/0/edit", table_id)
-	this.TplNames = "table/edit_table.tpl"
+	this.TplName = "table/edit_table.tpl"
 }
 
 // @router /:table_id:int/show [get]
@@ -50,7 +50,7 @@ func (this *TableController) Show() {
 	this.Data["show_hust_table"] = this.generate()
 	this.Data["show_total_status"] = utils.GenerateTable(table_id)
 	this.Data["other_problem_list"] = utils.GenerateProblemList(table_id)
-	this.TplNames = "table/show_table.tpl"
+	this.TplName = "table/show_table.tpl"
 }
 
 // @router /:table_id:int/show [post]

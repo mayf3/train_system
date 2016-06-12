@@ -2,7 +2,7 @@ package table
 
 import (
 
-	"train_system/models"
+	"github.com/mayf3/train_system/models"
 )
 
 // getPreTable
